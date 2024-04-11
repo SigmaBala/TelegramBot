@@ -32,7 +32,7 @@ async def ban(_, message):
                         chat_id = message.chat.id
                         admin = await bot.get_chat_member(message.chat.id, message.from_user.id)
                         try:
-                            if get.privileges.can_restrict_members:
+                            if admin.privileges.can_restrict_members:
                             get = await bot.get_users(user_id)
                             await bot.ban_chat_member(chat_id, get.id)
                             return await message.reply(
