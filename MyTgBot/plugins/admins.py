@@ -26,9 +26,7 @@ async def ban(_, message):
         await message.reply_text("Work only on groups!")
     else:
         try:
-            if not message.reply_to_message:
-                return await message.reply_text("**Reply someone to ban.**")
-                if len(message.text.split()) > 1:
+            if len(message.text.split()) > 1:
                         user_id = message.text.split()[1]
                         chat_id = message.chat.id
                         admin = await bot.get_chat_member(message.chat.id, message.from_user.id)
@@ -66,9 +64,7 @@ async def unban(_, message):
         await message.reply_text("Work only on groups!")
     else:
         try:
-            if not message.reply_to_message:
-                return await message.reply_text("**Reply someone to unban.**")
-                if len(message.text.split()) > 1:
+            if len(message.text.split()) > 1:
                         user_id = message.text.split()[1]
                         chat_id = message.chat.id
                         admin = await bot.get_chat_member(message.chat.id, message.from_user.id)
@@ -102,8 +98,6 @@ async def unban(_, message):
 
 @bot.on_message(filters.command("kick", ["/", ".", "?", "!"]))
 async def kick(_, message):
-    if not message.reply_to_message:
-        return await message.reply_text("**Reply someone to kick.**")
         if len(message.text.split()) > 1:
                 user_id = message.text.split()[1]
                 chat_id = message.chat.id
