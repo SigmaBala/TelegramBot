@@ -74,7 +74,7 @@ async def unban(_, message):
                                  await bot.unban_chat_member(chat_id, get.id)
                                  return await message.reply(
                                 'Fine, they can join again.')
-                           else:
+                            else:
                                 await message.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
                         except Exception as e:
                                return await message.reply(str(e))                    
