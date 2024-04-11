@@ -36,8 +36,7 @@ async def ban(_, message):
                             get = await bot.get_users(user_id)
                             await bot.ban_chat_member(chat_id, get.id)
                             return await message.reply(
-                                f'Banned {get.mention}!'
-                            )
+                                 f'Banned {get.mention}!')
                             else:
                                  await message.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
                         except Exception as e:
