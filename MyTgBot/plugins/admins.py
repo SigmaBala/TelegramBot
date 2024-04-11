@@ -67,12 +67,15 @@ async def unban(_, message):
                 if len(message.text.split()) > 1:
                         user_id = message.text.split()[1]
                         chat_id = message.chat.id
+                        admin = await bot.get_chat_member(message.chat.id, message.from_user.id)
                         try:
-                            get = await bot.get_users(user_id)
-                            await bot.unban_chat_member(chat_id, get.id)
-                            return await message.reply(
-                                'Fine, they can join again.'
-                            )
+                            if admin.privileges.can_restrict_members:
+                                 get = await bot.get_users(user_id)
+                                 await bot.unban_chat_member(chat_id, get.id)
+                                 return await message.reply(
+                                'Fine, they can join again.')
+                           else:
+                                await message.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
                         except Exception as e:
                                return await message.reply(str(e))                    
             else:
@@ -97,15 +100,18 @@ async def kick(_, message):
         if len(message.text.split()) > 1:
                 user_id = message.text.split()[1]
                 chat_id = message.chat.id
+                admin = await bot.get_chat_member(message.chat.id, message.from_user.id)
                 try:
-                    get = await bot.get_users(user_id)
-                    await bot.ban_chat_member(chat_id, get.id)
-                    await bot.unban_chat_member(chat_id, get.id)
-                    return await message.reply(
-                        f'Kicked {get.mention}!'
-                            )
-                        except Exception as e:
-                               return await message.reply(str(e))                    
+                    if admin.privileges.can_restrict_members:
+                         get = await bot.get_users(user_id)
+                         await bot.ban_chat_member(chat_id, get.id)
+                         await bot.unban_chat_member(chat_id, get.id)
+                         return await message.reply(
+                         f'Kicked {get.mention}!')
+                    else:
+                         await message.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
+                except Exception as e:
+                   return await message.reply(str(e))                    
         else:
             if not message.reply_to_message:
                    return await message.reply("**Reply someone to kick.**")
