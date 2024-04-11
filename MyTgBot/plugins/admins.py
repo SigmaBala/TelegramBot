@@ -27,6 +27,7 @@ async def ban(_, message):
     else:
         try:
             if not message.reply_to_message:
+                return await message.reply_text("**Reply someone to ban.**")
                 if len(message.text.split()) > 1:
                         user_id = message.text.split()[1]
                         chat_id = message.chat.id
@@ -44,6 +45,8 @@ async def ban(_, message):
             else:
                 get = await bot.get_chat_member(message.chat.id, message.from_user.id)
                 reply = message.reply_to_message
+                if not message.reply_to_message:
+                    return await message.reply_text("**Reply someone to ban.**")
                 if not get.privileges:
                     return await message.reply("**You Needs Admin Rights to Control Me (~_^)!**")
                 if get.privileges.can_restrict_members:
@@ -64,6 +67,7 @@ async def unban(_, message):
     else:
         try:
             if not message.reply_to_message:
+                return await message.reply_text("**Reply someone to unban.**")
                 if len(message.text.split()) > 1:
                         user_id = message.text.split()[1]
                         chat_id = message.chat.id
@@ -81,6 +85,8 @@ async def unban(_, message):
             else:
                 get = await bot.get_chat_member(message.chat.id, message.from_user.id)
                 reply = message.reply_to_message
+                if not message.reply_to_message:
+                    return await message.reply_text("**Reply someone to unban**")
                 if not get.privileges:
                     return await message.reply("**You Needs Admin Rights to Control Me (~_^)!**")
                 if get.privileges.can_restrict_members:
@@ -97,6 +103,7 @@ async def unban(_, message):
 @bot.on_message(filters.command("kick", ["/", ".", "?", "!"]))
 async def kick(_, message):
     if not message.reply_to_message:
+        return await message.reply_text("**Reply someone to kick.**")
         if len(message.text.split()) > 1:
                 user_id = message.text.split()[1]
                 chat_id = message.chat.id
