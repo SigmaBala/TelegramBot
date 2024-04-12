@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram import enums
 from pyrogram.types import *
-from MyTgBot.help.massaction import *
+from MyTgBot.help.admin_misc import *
 from MyTgBot import bot
 
 
