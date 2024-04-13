@@ -7,7 +7,7 @@ is_chatbot = False
 
 BOT_ID = 6005606875
 
-api = 'https://tofu-node-apis.onrender.com/api/charai?charID=gkLVbtXVSkljrRjnkzOowUbfXntEOFB2iWtu3xBj19A&q={}'
+api = ''
 
 @bot.on_message(filters.reply & filters.text & filters.chat(-1001717881477) & ~filters.bot)
 async def reply_chatbot(_, message):
