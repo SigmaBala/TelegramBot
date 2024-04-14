@@ -7,7 +7,7 @@ is_chatbot = False
 
 BOT_ID = 6005606875
 
-api = ''
+api = 'https://character.ai/chat/Dd0XWq2SHmyp2RrXyRYZkoevCWIPrZksInl1Kh2Bff4'
 
 @bot.on_message(filters.reply & filters.text & filters.chat(-1001717881477) & ~filters.bot)
 async def reply_chatbot(_, message):
