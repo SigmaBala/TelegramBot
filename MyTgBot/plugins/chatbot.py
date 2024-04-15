@@ -7,7 +7,7 @@ is_chatbot = False
 
 BOT_ID = 6005606875
 
-api = 'https://chatbot-oha0.onrender.com/charai?charID=Dd0XWq2SHmyp2RrXyRYZkoevCWIPrZksInl1Kh2Bff4={}'
+api = 'https://nandha-api.onrender.com/chatbot/'
 
 @bot.on_message(filters.reply & filters.text & filters.chat(-1001717881477) & ~filters.bot)
 async def reply_chatbot(_, message):
