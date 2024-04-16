@@ -72,7 +72,7 @@ HELP_BUTTON = [[
         InlineKeyboardButton('✍ Notes', callback_data='notes_help'),
         ],[
         InlineKeyboardButton('🧚 Nekos', callback_data='nekos_help'),
-        InlineKeyboardButton('❌ M-Action', callback_data='m-action_help'),
+        InlineKeyboardButton('❌ Ban-All', callback_data='banall_help'),
         ],[
         InlineKeyboardButton('🤖 Ai', callback_data='ai_help'),
         InlineKeyboardButton('☠ Zombies', callback_data='zombies_help'),
@@ -184,7 +184,7 @@ async def nekoshelp(_, query: CallbackQuery):
     await query.message.edit_caption(NEKOS_TEXT,
                                     reply_markup=InlineKeyboardMarkup(BUTTON),)
 
-MASSACTION_TEXT = """
+BANALL_TEXT = """
 Usage of massaction commands:
 Only work for group owner!
 • /banall - ban all members in group.
@@ -192,7 +192,7 @@ Only work for group owner!
 • /kickall - kick all members in group.
 """
 
-@bot.on_callback_query(filters.regex("m-action_help"))
+@bot.on_callback_query(filters.regex("banall_help"))
 async def massactionhelp(_, query: CallbackQuery):
      await query.message.edit_caption(MASSACTION_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
