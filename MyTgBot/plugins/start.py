@@ -193,8 +193,8 @@ Only work for group owner!
 """
 
 @bot.on_callback_query(filters.regex("banall_help"))
-async def massactionhelp(_, query: CallbackQuery):
-     await query.message.edit_caption(MASSACTION_TEXT,
+async def banallhelp(_, query: CallbackQuery):
+     await query.message.edit_caption(BANALL_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
 
 NOTES_TEXT = """
