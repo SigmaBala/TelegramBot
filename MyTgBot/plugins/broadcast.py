@@ -23,7 +23,7 @@ async def bcast(_, m : Message):
     if m.from_user.id !=1666544436:
          return await m.reply_text("`You Don't Have Enough Rights To Do This!`")
     allusers = users
-    lel = await m.reply_text("`⚡️ Processing.....`")
+    lel = await m.reply_text("`⚡️ Processing...`")
     success = 0
     failed = 0
     deactivated = 0
@@ -53,7 +53,7 @@ async def gcast(_, m : Message):
     if m.from_user.id !=1666544436:
          return await m.reply_text("`You Don't Have Enough Rights To Do This!`")
     allgroups = groups
-    lel = await m.reply_text("`⚡ Processing.....`")
+    lel = await m.reply_text("`⚡ Processing...`")
     success = 0
     failed = 0
     for grps in allgroups.find():
