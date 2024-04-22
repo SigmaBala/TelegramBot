@@ -134,6 +134,7 @@ Extra commands:
 • /txt - reply text with suitable name and get telegraph text link.
 • /tr - reply text to translate the message.
 • /gen - to generate image.
+• /q - reply message to quotly.
 • /write - to write a message.
 """
 
