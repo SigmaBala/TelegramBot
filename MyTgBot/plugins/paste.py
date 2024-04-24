@@ -30,7 +30,6 @@ async def spacebin(text: str):
 @bot.on_message(filters.command("paste", ["/", "!", ".", "?"]))
 async def paste(_, message):
     #share your codes on https://spacebin.in
-    reply = message.reply_to_message:
     if not message.reply_to_message:
           try:
               text = message.text.split(None,1)[1]
@@ -43,7 +42,6 @@ async def paste(_, message):
 
     elif bool(message.reply_to_message.text or message.reply_to_message.caption):
 
-           reply = message.reply_to_message:
            if message.reply_to_message.text:
                  text = message.reply_to_message.text
            elif message.reply_to_message.caption:
@@ -53,7 +51,6 @@ async def paste(_, message):
            return await message.reply(link)
 
     elif (message.reply_to_message.document and bool(message.reply_to_message.document.mime_type.startswith("text/"))):
-           reply = message.reply_to_message:
            path = await bot.download_media(message.reply_to_message)
            file = open(path, "r")
            text = file.read()
