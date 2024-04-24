@@ -5,12 +5,6 @@ from MyTgBot import bot
 from pyrogram import filters
 
 
-
-async def convert_to_datetime(timestamp): # Unix timestamp
-     date = datetime.datetime.fromtimestamp(timestamp)
-     return date
-
-
 async def spacebin(text: str):
     url = "https://spaceb.in/api/v1/documents/"
     response = requests.post(url, data={"content": text, "extension": "txt"})
@@ -19,11 +13,9 @@ async def spacebin(text: str):
     created_at = res.get("payload").get("created_at")
     link = f"https://spaceb.in/{id}"
     raw = f"https://spaceb.in/api/v1/documents/{id}/raw"
-    timedate = await convert_to_datetime(created_at)
     string = f"""\u0020
 **Here's the link**: **[Paste link]({link})**
 **Here's the link**: **[Raw View]({raw})**
-**Created datetime**: {timedate}
 """
     return string
 
