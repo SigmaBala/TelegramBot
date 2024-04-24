@@ -27,7 +27,7 @@ async def spacebin(text: str):
 """
     return string
 
-@bot.on_message(filters.command("paste", ["/", "!", ".", "?"])
+@bot.on_message(filters.command("paste", ["/", "!", ".", "?"]))
 async def paste(_, message):
     #share your codes on https://spacebin.in
     if not message.reply_to_message:
