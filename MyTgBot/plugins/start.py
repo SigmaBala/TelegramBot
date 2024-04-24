@@ -137,6 +137,8 @@ Extra commands:
 • /txt - reply text with suitable name and get telegraph text link.
 • /tr - reply text to translate the message.
 • /gen - to generate image.
+• /git - sent github username to view profile.
+• /ud - sent word for search urban dictionary.
 • /q - reply message to quotly.
 • /write - to write a message.
 """
