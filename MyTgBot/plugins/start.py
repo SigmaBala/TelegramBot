@@ -77,6 +77,9 @@ HELP_BUTTON = [[
         InlineKeyboardButton('🤖 Ai', callback_data='ai_help'),
         InlineKeyboardButton('☠ Zombies', callback_data='zombies_help'),
         ],[
+        InlineKeyboardButton('✏ Rename', callback_data='rename_help'),
+        InlineKeyboardButton('📩 Paste', callback_data='paste_help'),
+        ],[
         InlineKeyboardButton('🏡 Home', callback_data='home')]]
 
 @bot.on_callback_query(filters.regex("home"))
@@ -218,6 +221,26 @@ Usage of Ai commands:
 @bot.on_callback_query(filters.regex("ai_help"))
 async def aihelp(_, query: CallbackQuery):
      await query.message.edit_caption(AI_TEXT,
+                                      reply_markup=InlineKeyboardMarkup(BUTTON),)
+
+RENAME_TEXT = """
+Usage of Rename commands:
+• /rename - reply file to rename.
+"""
+
+@bot.on_callback_query(filters.regex("rename_help"))
+async def renamehelp(_, query: CallbackQuery):
+     await query.message.edit_caption(RENAME_TEXT,
+                                      reply_markup=InlineKeyboardMarkup(BUTTON),)
+
+PASTE_TEXT = """
+Usage of Paste commands:
+• /paste - reply message to paste.
+"""
+
+@bot.on_callback_query(filters.regex("paste_help"))
+async def pastehelp(_, query: CallbackQuery):
+     await query.message.edit_caption(PASTE_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
 
 ZOMBIES_TEXT = """
