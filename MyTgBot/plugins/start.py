@@ -101,7 +101,7 @@ BUTTON = [[InlineKeyboardButton("🔙 Back", callback_data="help_back"),
             InlineKeyboardButton("🗑 Close", callback_data='close'),]]
 
 ADMIN_TEXT = """
-Usage of admin commands:
+Usage of Admin commands:
 • /admins - to find group admins.
 • /promote - promote a user.
 • /demote - demote a user.
@@ -122,7 +122,7 @@ async def adminhelp(_, query: CallbackQuery):
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
 
 USERINFO_TEXT = """
-User info:
+User Info:
 • /id - userid & chatid.
 • /info - user information.
 """
@@ -156,7 +156,7 @@ async def tagginghelp(_, query: CallbackQuery):
      await query.message.edit_caption(TAGGING_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
 FUN_TEXT = """
-Usage of fun commands:
+Usage of Fun commands:
 • /react - react a message.
 • /aq - random sent animequotes.
 • /dice - sent a dice.
@@ -170,7 +170,7 @@ async def funhelp(_, query: CallbackQuery):
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
 
 NEKOS_TEXT = """
-Usage of animation reactions commands:
+Usage of Animation Reactions commands:
 • /neko - random sent neko anime image.
 • /waifu - random sent waifu anime image.
 • /baka - random sent baka anime image.
@@ -189,7 +189,7 @@ async def nekoshelp(_, query: CallbackQuery):
                                     reply_markup=InlineKeyboardMarkup(BUTTON),)
 
 BANALL_TEXT = """
-Usage of massaction commands:
+Usage of Banall commands:
 Only work for group owner!
 • /banall - ban all members in group.
 • /unbanall - unban all members in group.
@@ -202,7 +202,7 @@ async def banallhelp(_, query: CallbackQuery):
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
 
 NOTES_TEXT = """
-Save notes on your chats:
+Save Notes on your chats:
 • /save - reply to any messages with notename.
 • /clear - use with notename.
 • /notes - get notes in your chat. 
