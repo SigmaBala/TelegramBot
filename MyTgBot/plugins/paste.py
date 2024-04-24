@@ -31,7 +31,6 @@ async def spacebin(text: str):
 async def paste(_, message):
     #share your codes on https://spacebin.in
     reply = message.reply_to_message:
-     
     if not message.reply_to_message:
           try:
               text = message.text.split(None,1)[1]
@@ -45,7 +44,6 @@ async def paste(_, message):
     elif bool(message.reply_to_message.text or message.reply_to_message.caption):
 
            reply = message.reply_to_message:
-         
            if message.reply_to_message.text:
                  text = message.reply_to_message.text
            elif message.reply_to_message.caption:
