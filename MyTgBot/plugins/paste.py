@@ -30,6 +30,8 @@ async def spacebin(text: str):
 @bot.on_message(filters.command("paste", ["/", "!", ".", "?"]))
 async def paste(_, message):
     #share your codes on https://spacebin.in
+    reply = message.reply_to_message:
+     
     if not message.reply_to_message:
           try:
               text = message.text.split(None,1)[1]
@@ -38,9 +40,11 @@ async def paste(_, message):
                return 
 
           link = await spacebin(text)
-          return await message.edit(link)
+          return await message.reply(link)
 
     elif bool(message.reply_to_message.text or message.reply_to_message.caption):
+
+           reply = message.reply_to_message:
          
            if message.reply_to_message.text:
                  text = message.reply_to_message.text
@@ -48,15 +52,16 @@ async def paste(_, message):
                  text = message.reply_to_message.caption
         
            link = await spacebin(text)
-           return await message.edit(link)
+           return await message.reply(link)
 
     elif (message.reply_to_message.document and bool(message.reply_to_message.document.mime_type.startswith("text/"))):
+           reply = message.reply_to_message:
            path = await bot.download_media(message.reply_to_message)
            file = open(path, "r")
            text = file.read()
            file.close()
            os.remove(path)
            link = await spacebin(text)
-           return await message.edit(link)
+           return await message.reply(link)
     else:
          return await message.reply_text("=> I am unable to paste this.")
