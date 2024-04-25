@@ -64,19 +64,17 @@ Click the button below to know my commands!
 HELP_BUTTON = [[
         InlineKeyboardButton('👮 Admin', callback_data='admin_help'),
         InlineKeyboardButton('👥 UserInfo', callback_data='userinfo_help'),
-        ],[
         InlineKeyboardButton('🤗 Fun', callback_data='fun_help'),
-        InlineKeyboardButton('👻 Misc', callback_data='misc_help'),
         ],[
+        InlineKeyboardButton('👻 Misc', callback_data='misc_help'),
         InlineKeyboardButton('🔍 Tagging', callback_data='tagging_help'),
         InlineKeyboardButton('✍ Notes', callback_data='notes_help'),
         ],[
         InlineKeyboardButton('🧚 Nekos', callback_data='nekos_help'),
         InlineKeyboardButton('❌ Ban-All', callback_data='banall_help'),
-        ],[
         InlineKeyboardButton('🤖 Ai', callback_data='ai_help'),
-        InlineKeyboardButton('☠ Zombies', callback_data='zombies_help'),
         ],[
+        InlineKeyboardButton('☠ Zombies', callback_data='zombies_help'),
         InlineKeyboardButton('✏ Rename', callback_data='rename_help'),
         InlineKeyboardButton('📩 Paste', callback_data='paste_help'),
         ],[
