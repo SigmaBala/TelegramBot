@@ -31,7 +31,6 @@ async def bcast(_, m : Message):
     for usrs in allusers.find():
         try:
             userid = usrs["user_id"]
-            #print(int(userid))
             if m.reply_to_message:
                 await m.reply_to_message.copy(int(userid))
             success +=1
