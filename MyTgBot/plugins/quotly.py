@@ -4,7 +4,6 @@ import base64
 from pyrogram import filters, enums
 from MyTgBot import bot
 from MyTgBot.help.help_func import grap
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 data = {
@@ -81,6 +80,4 @@ async def quote(_, message):
            buffer = base64.b64decode(response['result']['image'].encode('utf-8'))
            name = f"{username}bot.webp"
            open(name, 'wb').write(buffer)
-           BUTTON=InlineKeyboardMarkup([[
-           InlineKeyboardButton("BG CODE ⬅️", url="https://graph.org/file/1e3df8ff41d67db1fc9ea.jpg")]])
-           return await message.reply_sticker(sticker=name, reply_markup=BUTTON, quote=True)
+           return await message.reply_sticker(sticker=name, quote=True)
