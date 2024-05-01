@@ -2,7 +2,7 @@ import json
 
 from MyTgBot import bot
 from MyTgBot.help.help_func import get_note_deatils, deserialize_inline_keyboard
-from MyTgBot.database.notes import get_notes_list, add_note, get_note, delete_note, delete_all_note
+from MyTgBot.database.notes_db import get_notes_list, add_note, get_note, delete_note, delete_all_note
 from pyrogram import filters
 
 right_format = 'Eg: `/save {notename} reply to text/media` or give text like `{notename} @CuteSerenaBot`'
@@ -189,5 +189,3 @@ async def save_note(_, message):
            return await message.reply(
                 added.format(note_name, note_name)
            )
-
-        
