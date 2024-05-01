@@ -1,111 +1,193 @@
-from MyTgBot import mongodb, bot
+import json
+
+from MyTgBot import bot
+from MyTgBot.help.help_func import get_note_deatils, deserialize_inline_keyboard
+from MyTgBot.database.notes import get_notes_list, add_note, get_note, delete_note, delete_all_note
 from pyrogram import filters
-from pyrogram.types import *
-from pyrogram import enums
 
-db = mongodb["NOTES"]
+right_format = 'Eg: `/save {notename} reply to text/media` or give text like `{notename} @CuteSerenaBot`'
+exists = '**Note Name already exist.\nDelete and try again.**'
+not_exists = 'No Notename Saved as `{}`.\nGet the list of notes by `/notes` command.'
+added = '**Added!**: `{}`\nGet the note using `/get {}` or `/get num`'
+no_notes = '**No Notes Saved in {}**'
+get_note_eg = '**Example**:\n`/get {notename}`'
+give_note_del = '**Provide note name to deleted**.'
+deleted_note = 'Successfully deleted note `{}`.'
+deleted_all = '**Successfully deleted all notes from {}**'
 
-@bot.on_message(filters.command("notes", ["/", ".", "?", "!"]))
-async def notes(_, message):
-     chat_id = message.chat.id
-     notes = f"List Of Notes In **{message.chat.title}**:\n\n"
-     num = 0
-     for note in db.find({"chat_id": chat_id}):
-         if bool(note):
-               name = note["note_name"]
-               num += 1
-               notes += f"**{num} -** `{name}`\n"
-         else: return await message.reply("No Notes Saved Here!")
-     notes += "\nYou can retrieve these notes by using #notename"
-     return await message.reply_text(notes)
-
-@bot.on_message(filters.command("clear", ["/", ".", "?", "!"]))
-async def clear(_, message):
-      chat_id = message.chat.id
-      get = await bot.get_chat_member(message.chat.id, message.from_user.id)
-      if not get.privileges: return await message.reply_text("Admins Only Can Clear Notes!")
-      try: note_name = message.text.split(None,1)[1]
-      except: return await message.reply_text("what I want do clear? tell me note name!")
-      x = db.find_one({"chat_id": chat_id, "note_name": note_name})
-      if bool(x):
-          db.delete_one(x)
-          return await message.reply_text(f"Deleted! > `{note_name}` <")
-      return await message.reply_text(f"No Notes Named > `{note_name}` <")
-
-@bot.on_message(filters.command("save", ["/", ".", "?", "!"]))
-async def save(_, message):
-     reply = message.reply_to_message
-     get = await bot.get_chat_member(message.chat.id, message.from_user.id)
-     chat_id = message.chat.id
-     user_id = message.from_user.id
-     if message.chat.type == enums.ChatType.PRIVATE: return await message.reply_text("Commands Work Only On Groups!")
-     elif not get.privileges: return await message.reply_text("Admins Only Can Save Notes!")
-     try: note_name = message.text.split(None,1)[1].lower()
-     except: return await message.reply_text("Give Note Name To Save!")
-     if reply and reply.text:
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "text": reply.text, "type": "text"})
-     elif reply and reply.sticker:
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "sticker": reply.sticker.file_id, "type": "sticker"})
-     elif reply and reply.voice:
-          if reply.caption:
-               caption = reply.caption
-          else: caption = ""
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "voice": reply.voice.file_id,"caption": caption, "type": "voice"})
-     elif reply and reply.video:
-          if reply.caption:
-               caption = reply.caption
-          else: caption = ""
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "video": reply.video.file_id, "caption": caption, "type": "video"})
-     elif reply and reply.document:
-          if reply.caption:
-               caption = reply.caption
-          else: caption = ""
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "document": reply.document.file_id, "caption": caption, "type": "document"})
-     elif reply and reply.animation:
-          if reply.caption:
-               caption = reply.caption
-          else: caption = ""
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "animation": reply.animation.file_id, "caption": caption, "type": "animation"})
-     elif reply and reply.photo:
-          if reply.caption:
-               caption = reply.caption
-          else: caption = ""
-          db.insert_one({"chat_id": chat_id, "note_name": note_name, "photo": reply.photo.file_id, "caption": caption, "type": "photo"})
-     return await message.reply_text("Added! `#{}`".format(note_name))
-
-@bot.on_message(filters.regex("^#"))
+@bot.on_message(filters.command('get', ["/", "!", ".", "?"]))
 async def get_notes(_, message):
+      
+      chat_id = message.chat.id     
+      reply = message.reply_to_message
+     
+      if len(message.text.split()) < 2:
+            return await message.reply(
+                 get_note_eg
+            )   
+      else:
+          note_name = message.text.split()[1].lower()
+          note_data = await get_note(               
+               name=note_name, chat_id=chat_id
+          )
+          if not note_data:
+                return await message.reply(
+                      not_exists.format(note_name)
+                )
+          note = note_data[0]
+          type = note.get('type', '')
+          file_id = note.get('file_id', '')
+          caption = note.get('caption', None)
+          keyboard = None
+          keyboard_json = note.get('keyboard', None)
+          if keyboard_json:
+              serialized_keyboard = json.loads(keyboard_json)
+              keyboard = deserialize_inline_keyboard(serialized_keyboard)
+          
+          text = note.get('text', '')        
+
+          if type == '#STICKER':
+               reply_func = reply.reply_sticker if reply else message.reply_sticker
+               return await reply_func(
+                     sticker=file_id, reply_markup=keyboard
+               )
+          
+          elif type == '#AUDIO':
+               reply_func = reply.reply_audio if reply else message.reply_audio
+               return await reply_func(
+                    audio=file_id,  caption=caption, reply_markup=keyboard
+               )
+
+          elif type == '#PHOTO':
+               reply_func = reply.reply_photo if reply else message.reply_photo
+               return await reply_func(
+                    photo=file_id,  caption=caption, reply_markup=keyboard
+               )
+               
+          elif type == '#TEXT':
+                reply_func = reply.reply_text if reply else message.reply_text
+                return await reply_func(
+                     text=text, reply_markup=keyboard
+                )
+               
+          elif type == '#ANIMATION':
+                reply_func = reply.reply_animation if reply else message.reply_animation
+                return await reply_func(
+                     animation=file_id,   caption=caption, reply_markup=keyboard
+                )
+               
+          elif type == '#DOCUMENT':
+                reply_func = reply.reply_document if reply else message.reply_document
+                return await reply_func(
+                     document=file_id,  caption=caption, reply_markup=keyboard
+                )
+               
+          elif type == '#VIDEO':
+                reply_func = reply.reply_video if reply else message.reply_video
+                return await reply_func(
+                     video=file_id, caption=caption, reply_markup=keyboard
+                )
+          try: await message.delete();
+          except: pass
+           
+
+@bot.on_message(filters.command('clear', ["/", "!", ".", "?"]))
+async def clear_note(_, message):
      chat_id = message.chat.id
-     if message.chat.type == enums.ChatType.PRIVATE: return await message.reply_text("Commands Work Only On Groups!")
-     try: note_name = message.text.split("#")[1].strip()
-     except: return await message.reply_text("example: `#test`")
-     x = db.find_one({"chat_id": chat_id, "note_name": note_name})
-     if bool(x):
-          if "video" == x["type"]:
-                video = x["video"]
-                caption = x["caption"]
-                return await message.reply_video(video=video, caption=caption)
-          elif "animation" == x["type"]:
-                animation = x["animation"]
-                caption = x["caption"]
-                return await message.reply_animation(animation=animation, caption=caption)
-          elif "photo" == x["type"]:
-                photo = x["photo"]
-                caption = x["caption"]
-                return await message.reply_photo(photo=photo, caption=caption)
-          elif "document" == x["type"]:
-                document = x["document"]
-                caption = x["caption"]
-                return await message.reply_document(document=document, caption=caption)
-          elif "text" == x["type"]:
-                text = x["text"]              
-                return await message.reply_text(text=text)
-          elif "voice" == x["type"]:
-                voice = x["voice"]
-                caption = x["caption"]
-                return await message.reply_voice(voice=voice)
-          elif "sticker" == x["type"]:
-                sticker = x["sticker"]
-                return await message.reply_sticker(sticker=sticker)
-          else: return await message.reply_text("can't send this Note  >`{}`<".format(note_name))
-     else: return
+     if len(message.text.split()) < 2:
+          return await message.reply(
+              give_note_del
+          )
+     else:
+          note_name = message.text.split()[1].lower()
+          notes = await get_notes_list(chat_id)
+          if (not notes is None) and (note_name in notes):
+              await delete_note(note_name, chat_id)
+              return await message.reply(
+                  deleted_note.format(note_name)
+              )
+          else:
+             return await message.reply(
+                 not_exists.format(note_name)
+)
+
+
+@bot.on_message(filters.command(['rallnote', 'removeallnote'], ["/", "!", ".", "?"]))
+async def delete_chat_notes(_, message):
+       chat_id = message.chat.id
+       chat_name = message.chat.title if message.chat.title else message.chat.first_name
+  
+       bot = await delete_all_note(chat_id)
+       if bot:
+             return await message.reply(
+                   deleted_all.format(chat_name)
+             )
+       else:
+             return await message.reply(
+                   no_notes.format(chat_name)
+             )
+
+     
+@bot.on_message(filters.command('notes', ["/", "!", ".", "?"]))
+async def get_note_list(_, message):
+      chat_id = message.chat.id
+      chat_name = message.chat.title if message.chat.title else message.chat.first_name
+            
+      list = await get_notes_list(chat_id)
+      if list is None:
+            return await message.reply(
+                  no_notes.format(chat_name)
+            )                  
+      text = f'**Here The List Of Notes In {chat_name}:\n\n**'
+      if not list is None:
+            for i, name in enumerate(list):
+                  text += f'{i+1}, `{name}`\n'
+      text += '\nYou can get access the notes by using `/get {notename}`'
+      return await message.reply(text)
+
+
+@bot.on_message(filters.command('save', ["/", "?", ".", "!"]))
+async def save_note(_, message):      
+     chat_id = message.chat.id
+     reply = message.reply_to_message
+  
+     if not reply:
+         if len(message.text.split()) <= 2:
+             return await message.reply(
+                  right_format
+             )
+     elif reply:
+          if len(message.text.split()) < 2:
+              return await message.reply(
+                 right_format
+              )
+     try:
+        note = await get_note_deatils(message)
+     except Exception as e:
+          return await message.reply(
+               str(e)
+          )
+               
+     note_name = note['name']
+     length = len(await get_notes_list(chat_id)) if await get_notes_list(chat_id) is not None else 0
+     available_num = [i + 1 for i in range(length)]
+     if note_name.isdigit():
+           return await message.reply(
+                 "**Hello, sorry you can't store note by digits because you are accessing notes by its number** `/get 1`"
+           )
+      
+     notes_list = await get_notes_list(chat_id)
+     if (not notes_list is None) and (note_name in notes_list):
+          return await message.reply(
+                 exists
+          )
+     else:
+           await add_note(
+                chat_id=chat_id, 
+                data=note
+           )
+           return await message.reply(
+                added.format(note_name, note_name)
+           )
+
+        
