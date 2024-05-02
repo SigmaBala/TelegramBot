@@ -48,7 +48,7 @@ async def whisper(_, iquery):
     await iquery.answer(
       results=[
        InlineQueryResultArticle(
-          title=f"📪 Send whisper for {username}",
+          title=f"📪 Send whisper for @{username}",
           url="http://t.me/NandhaBots",
           input_message_content=InputTextMessageContent(
             message_text=text,
