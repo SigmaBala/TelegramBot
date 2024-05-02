@@ -39,6 +39,7 @@ async def whisper(_, iquery):
       except Exception:
         pass
       text = f"**🔒 Secret whisper for ( @{username} ) .ا**"
+    send = await app.send_message(query)
     reply_markup = InlineKeyboardMarkup(
       [[
         InlineKeyboardButton("📪 Show whisper", callback_data=f"{send.id}catch{user}from{user_id}")
