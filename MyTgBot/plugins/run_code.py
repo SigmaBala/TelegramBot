@@ -21,7 +21,7 @@ async def aexec(code, client, message):
     return await locals()["__aexec"](client, message)
 
 
-def convert(speed):
+async def convert(speed):
     return round(int(speed) / 1_000_000, 3)
 
 @bot.on_message(filters.user(DEV_USERS) & filters.command("speedtest", ["/", "!", "?", "."]))
