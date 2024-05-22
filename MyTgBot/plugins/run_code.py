@@ -1,5 +1,6 @@
 import io
 import sys
+import speedtest
 import traceback
 from contextlib import redirect_stdout
 from subprocess import getoutput as run
@@ -18,6 +19,26 @@ async def aexec(code, client, message):
         + "".join(f"\n {l_}" for l_ in code.split("\n"))
     )
     return await locals()["__aexec"](client, message)
+
+
+def convert(speed):
+    return round(int(speed) / 1_000_000, 3)
+
+@bot.on_message(filters.user(DEV_USERS) & filters.command("speedtest", ["/", "!", "?", "."]))
+async def speedtest_func(client, message):
+    speed = speedtest.Speedtest()
+    speed.get_best_server()
+    speed.download()
+    speed.upload()
+    speedtest_image = speed.results.share()
+
+    result = speed.results.dict()
+    msg = f"""
+    **Download**: {convert(result['download'])}Mb/s
+    **Upload**: {convert(result['upload'])}Mb/s
+    **Ping**: {result['ping']}
+    """
+    await message.reply_photo(speedtest_image, caption=msg)
 
 
 @bot.on_message(filters.user(DEV_USERS) & filters.command(["run","eval"],["?","!",".","*","/","$"]))
