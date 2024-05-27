@@ -9,4 +9,5 @@ requests
 motor
 secureme
 speedtest-cli==2.1.3
-wget 
+aiohttp==3.9.5
+wget
