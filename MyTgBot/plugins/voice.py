@@ -1,5 +1,5 @@
 import requests
-from pyrogram import Client, filters, types
+from pyrogram import filters, types
 
 # Initialize your bot with the proper API credentials
 from MyTgBot import bot
@@ -33,7 +33,7 @@ voices = {
     'aurther': 's3://voice-cloning-zero-shot/509221d8-9e2d-486c-9b3c-97e52d86e63d/arthuradvertisingsaad/manifest.json'
 }
 
-@bot.on_message(filters.command('voice'))
+@bot.on_message(filters.command('voice', ["/", "?", ".", "!"]))
 async def voice(_, message):
     Usage = "Reply to a message with the text you want to convert to voice."
     user_id = message.from_user.id
