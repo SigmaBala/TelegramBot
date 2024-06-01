@@ -139,6 +139,7 @@ Extra commands:
 • /git - sent github username to view profile.
 • /ud - sent word for search urban dictionary.
 • /q - reply message to quotly.
+• /calc - to calculate sum.
 • /write - to write a message.
 """
 
