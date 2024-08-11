@@ -20,3 +20,12 @@ bot = Client("MyTgBot",
        api_hash=api_hash,
        bot_token=bot_token,
        plugins=dict(root="MyTgBot"), )
+
+# koyeb
+
+PORT = "8080"
+
+app = web.AppRunner(await web_server())
+        await app.setup()
+        bind_address = "0.0.0.0"
+        await web.TCPSite(app, bind_address, PORT).start()
