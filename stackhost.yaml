@@ -10,7 +10,7 @@ commands:
   package:
     - "nano inxi"
   start:
-    - "python3 bot.py"
+    - "python3 main.py"
 
 env:
   - "ENVIRONMENT=production"
