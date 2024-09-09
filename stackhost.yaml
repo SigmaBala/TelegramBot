@@ -10,7 +10,7 @@ commands:
   package:
     - "nano inxi"
   start:
-    - "python3 MyTgBot.py"
+    - "python3 __main__.py"
 
 env:
   - "ENVIRONMENT=production"
