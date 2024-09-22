@@ -41,6 +41,18 @@ async def speedtest_func(client, message):
     await message.reply_photo(speedtest_image, caption=msg)
 
 
+@bot.on_message(filters.user(DEV_USERS) & filters.command(["logs","sentlogs"],["?","!",".","*","/","$"]))
+def logs(client, message):
+    run_logs = run("tail logs.txt")
+    message = message.reply_text("Sending logs...")
+    with io.BytesIO(str.encode(run_logs)) as logs:
+        logs.name = "logs.txt"
+        message.reply_document(
+            document=logs,
+        )
+    message.delete()
+
+
 @bot.on_message(filters.user(DEV_USERS) & filters.command(["run","eval"],["?","!",".","*","/","$"]))
 async def eval(client, message):
     if len(message.text.split()) <2:
