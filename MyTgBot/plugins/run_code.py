@@ -1,4 +1,5 @@
 import io
+import logging
 import sys
 import speedtest
 import traceback
@@ -45,11 +46,7 @@ async def speedtest_func(client, message):
 def logs(client, message):
     run_logs = run("tail logs.txt")
     message = message.reply_text("Sending logs...")
-    with io.BytesIO(str.encode(run_logs)) as logs:
-        logs.name = "logs.txt"
-        message.reply_document(
-            document=logs,
-        )
+    logging.basicConfig(level=logging.INFO, filename="logs.txt")
     message.delete()
 
 
