@@ -76,7 +76,6 @@ HELP_BUTTON = [[
         ],[
         InlineKeyboardButton('☠ Zombies', callback_data='zombies_help'),
         InlineKeyboardButton('✏ Rename', callback_data='rename_help'),
-        InlineKeyboardButton('📩 Paste', callback_data='paste_help'),
         ],[
         InlineKeyboardButton('🏡 Home', callback_data='home')]]
 
@@ -235,11 +234,6 @@ async def renamehelp(_, query: CallbackQuery):
      await query.message.edit_caption(RENAME_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
 
-PASTE_TEXT = """
-Usage of Paste commands:
-• /paste - reply message to paste.
-"""
-
 @bot.on_callback_query(filters.regex("paste_help"))
 async def pastehelp(_, query: CallbackQuery):
      await query.message.edit_caption(PASTE_TEXT,
@@ -247,7 +241,7 @@ async def pastehelp(_, query: CallbackQuery):
 
 ZOMBIES_TEXT = """
 Usage of Zombies commands:
-• /cleanzombies - Remove delete account on you chat.
+• /zombiesclean - Remove delete account on you chat.
 """
 
 @bot.on_callback_query(filters.regex("zombies_help"))
