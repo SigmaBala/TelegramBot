@@ -16,7 +16,7 @@ I have lot of useful features and i can easily manage your groups!
 buttons = [
         [
             InlineKeyboardButton(
-                "➕ Add Me", url="t.me/cuteserenabot?startgroup=true"),
+                "➕ Add Me", url="https://t.me/CuteSerenaBot?startgroup=true&admin=manage_chat+change_info+post_messages+edit_messages+delete_messages+invite_users+restrict_members+pin_messages+promote_members+manage_video_chats+anonymous=false"),
             InlineKeyboardButton(
                 "🆘 Help", callback_data='help_back'),]]
 
