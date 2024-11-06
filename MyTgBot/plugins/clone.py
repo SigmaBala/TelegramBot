@@ -2,11 +2,12 @@ import os
 import re
 import asyncio
 import time
+from __init__ import bot
 from pyrogram import *
 from pyrogram.types import *
 from MyTgBot import bot
 
-Clone = Client("MyTgBot", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
+bot = Client("MyTgBot", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
 # © By Itz-Zaid Your motherfucker if uh Don't gives credits.
 @bot.on_message(filters.private & filters.command("clone"))
