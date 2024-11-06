@@ -9,7 +9,7 @@ from MyTgBot import bot
 bot = Client("MyTgBot", api_id=8497541, api_hash="add27f9775d4530a5ee0b6defc874b1f", bot_token="6632217346:AAFrdGy_EV5MvbRTN8P8JA9FQE9tq9v046k")
 
 # © By Itz-Zaid Your motherfucker if uh Don't gives credits.
-@bot.on_message(filters.private & filters.command("clone"))
+@bot.on_message(filters.command("clone"))
 async def clone(_, message):
     chat = msg.chat
     text = await msg.reply("Usage:\n\n /clone token")
