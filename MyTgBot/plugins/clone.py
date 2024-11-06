@@ -18,7 +18,7 @@ async def clone(_, message):
     try:
         await text.edit("Booting Your Client")
                    # change this Directry according to ur repo
-        bot = Client(":memory:", API_ID, API_HASH, TOKEN, plugins={"root": "MyTgBot"})
+        bot = Client(":memory:", api_id, api_hash, bot_token, plugins={"root": "MyTgBot"})
         await bot.start()
         idle()
         user = await bot.get_me()
