@@ -2,6 +2,8 @@ import requests
 import random
 from MyTgBot import bot
 from pyrogram.types import Message, ChatPermissions
+from pyrogram.types.bots_and_keyboards.inline_keyboard_button import InlineKeyboardButton
+from pyrogram.types.bots_and_keyboards.inline_keyboard_markup import InlineKeyboardMarkup
 from pyrogram import filters
 
 @bot.on_message(filters.command("mute"))
