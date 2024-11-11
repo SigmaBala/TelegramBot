@@ -5,7 +5,7 @@ from pyrogram.types import Message
 from pyrogram import filters
 
 @bot.on_message(filters.command("mute"))
-async def muted(_, m):
+async def muted(_, message):
       admin = await bot.get_chat_member(message.chat.id, message.from_user.id)
       bot_stats = await bot.get_chat_member(message.chat.id, "self")
       user_id = int(message.from_user.id)
@@ -15,28 +15,28 @@ async def muted(_, m):
       url = api["results"][0]['url']
       try:
           if admin.privileges.can_restrict_members:   
-                if not reply and len(m.command) >2:
-                    mute_id = int(m.text.split(" ")[1])
-                    reason = m.text.split(None, 2)[2]
-                elif not reply and len(m.command) == 2:
-                    mute_id = int(m.text.split(" ")[1])
+                if not reply and len(message.command) >2:
+                    mute_id = int(message.text.split(" ")[1])
+                    reason = message.text.split(None, 2)[2]
+                elif not reply and len(message.command) == 2:
+                    mute_id = int(message.text.split(" ")[1])
                     reason = "No Reason Provide"
-                elif reply and len(m.command) >1:
+                elif reply and len(message.command) >1:
                     mute_id = reply.from_user.id
-                    reason = m.text.split(None, 1)[1]        
-                elif reply and len(m.command) <2:
+                    reason = message.text.split(None, 1)[1]        
+                elif reply and len(message.command) <2:
                      mute_id = reply.from_user.id
                      reason = "No Reason Provide"
                 else:
-                    return await m.reply("I can't find the user.")
+                    return await message.reply("I can't find the user.")
                 if not bot_stats.privileges:
-                      return await m.reply_text("`Make you sure I'm Admin!`")
+                      return await message.reply_text("`Make you sure I'm Admin!`")
                 else:
                      await bot.restrict_chat_member(chat_id, mute_id, ChatPermissions(can_send_messages=False))
-                     await m.reply_animation(url,caption=f"The Bitch Muted!\n • `{mute_id}`\n\nFollowing Reason:\n`{reason}`",
+                     await message.reply_animation(url,caption=f"The Bitch Muted!\n • `{mute_id}`\n\nFollowing Reason:\n`{reason}`",
                      reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Unmute", callback_data=f"unmute_btn:{mute_id}")]]))
       except Exception as e:
-         await m.reply_text(e)
+         await message.reply_text(e)
                      
 
 
@@ -53,6 +53,6 @@ async def unmute_btn(_, query):
                 return await query.answer("Admins Only!")
           else:
              await bot.restrict_chat_member(chat_id, mute_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
-             await query.m.edit_media(media=InputMediaAnimation(url,caption=f"`Fine they can speck now!`\nID: `{mute_id}`"))
+             await query.message.edit_media(media=InputMediaAnimation(url,caption=f"`Fine they can speck now!`\nID: `{mute_id}`"))
       except Exception as e:
-            await query.m.reply_text(e)
+            await query.message.reply_text(e)
