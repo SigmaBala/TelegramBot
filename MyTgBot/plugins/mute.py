@@ -6,11 +6,11 @@ from pyrogram import filters
 
 @bot.on_message(filters.command("mute"))
 async def muted(_, m):
-      admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
-      bot_stats = await bot.get_chat_member(m.chat.id, "self")
-      user_id = int(m.from_user.id)
-      chat_id = int(m.chat.id)
-      reply = m.reply_to_message
+      admin = await bot.get_chat_member(message.chat.id, message.from_user.id)
+      bot_stats = await bot.get_chat_member(message.chat.id, "self")
+      user_id = int(message.from_user.id)
+      chat_id = int(message.chat.id)
+      reply = message.reply_to_message
       api = requests.get("https://nekos.best/api/v2/bored").json()
       url = api["results"][0]['url']
       try:
@@ -42,9 +42,9 @@ async def muted(_, m):
 
 @bot.on_callback_query(filters.regex("unmute_btn"))
 async def unmute_btn(_, query):
-      chat_id = query.m.chat.id
+      chat_id = query.message.chat.id
       user_id = query.from_user.id
-      admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
+      admin = await bot.get_chat_member(message.chat.id, message.from_user.id)
       mute_id = query.data.split(":")[1]
       api = requests.get("https://nekos.best/api/v2/smile").json()
       url = api["results"][0]['url']
