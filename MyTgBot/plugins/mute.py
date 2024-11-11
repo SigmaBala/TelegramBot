@@ -31,8 +31,6 @@ async def muted(_, message):
                     return await message.reply("I can't find the user.")
                 if not bot_stats.privileges:
                       return await message.reply_text("`Make you sure I'm Admin!`")
-                if admin.privileges:
-                       return await message.reply_text("`The User Is Admin! I can't ban!`")
                 else:
                      await bot.restrict_chat_member(chat_id, mute_id, ChatPermissions(can_send_messages=False))
                      await message.reply_animation(url,caption=f"The Bitch Muted!\n • `{mute_id}`\n\nFollowing Reason:\n`{reason}`",
