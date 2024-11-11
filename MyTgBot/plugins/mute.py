@@ -1,7 +1,7 @@
 import requests
 import random
 from MyTgBot import bot
-from pyrogram.types import Message
+from pyrogram.types import Message, ChatPermissions
 from pyrogram import filters
 
 @bot.on_message(filters.command("mute"))
