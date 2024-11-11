@@ -44,7 +44,7 @@ async def muted(_, m):
 
 @bot.on_callback_query(filters.regex("unmute_btn"))
 async def unmute_btn(_, query):
-      chat_id = query.m.chat.id
+      chat_id = query.message.chat.id
       user_id = query.from_user.id
       admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
       mute_id = query.data.split(":")[1]
