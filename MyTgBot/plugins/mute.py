@@ -34,4 +34,16 @@ async def muted(_, m):
          await m.reply_text(e)
 
 
-
+@bot.on_message(filters.command("unmute",  ["/", ".", "?", "!"]))
+async def unmute(_, m):
+      chat_id = m.chat.id
+      user_id = m.from_user.id
+      admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
+      try:
+          if not admin.privileges.can_restrict_members:
+                return await m.reply_text("**Your missing the admin rights `can_restrict_members`**")
+          else:
+             await bot.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
+             await m.reply_text(f"`Fine they can speck now!`")
+      except Exception as e:
+            await m.reply_text(e)
