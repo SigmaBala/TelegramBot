@@ -44,7 +44,7 @@ async def unmute(_, m):
       chat_id = m.chat.id
       user_id = m.from_user.id
       admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
-      mute_id = m.text.split(":")[1]
+      mute_id = m.text.split(" ")[1]
       api = requests.get("https://nekos.best/api/v2/smile").json()
       url = api["results"][0]['url']
       try:
