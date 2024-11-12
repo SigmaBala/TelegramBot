@@ -5,9 +5,9 @@ import time
 
 start = time.time()
 
-api_id = os.getenv("API_ID")
-api_hash = os.getenv("API_HASH")
-bot_token = os.getenv("TOKEN")
+api_id = 8497541
+api_hash = "add27f9775d4530a5ee0b6defc874b1f"
+bot_token = "6005606875:AAGFpQxI7VCNAfB5HbIhhc8zOxj3laXWUMM"
 
 
 MONGO = "mongodb+srv://kora3244:jNtUZleBWM71f1pC@haremdb.qxtdvdh.mongodb.net/?retryWrites=true&w=majority"
