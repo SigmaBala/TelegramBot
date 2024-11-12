@@ -11,8 +11,6 @@ async def muted(_, m):
       user_id = int(m.from_user.id)
       chat_id = int(m.chat.id)
       reply = m.reply_to_message
-      api = requests.get("https://nekos.best/api/v2/bored").json()
-      url = api["results"][0]['url']
       try:
           if admin.privileges.can_restrict_members:
                 if not reply and len(m.command) >2:
@@ -33,7 +31,7 @@ async def muted(_, m):
                       return await m.reply_text("`Make you sure I'm Admin!`")
                 else:
                      await bot.restrict_chat_member(chat_id, mute_id, ChatPermissions(can_send_messages=False))
-                     await m.reply_animation(url,caption=f"The Bitch Muted!\n • `{mute_id}`\n\nFollowing Reason:\n`{reason}`")
+                     await m.reply_text(f"The Bitch Muted!\n • {message.from_user.mention}\n\nFollowing Reason:\n`{reason}`")
       except Exception as e:
          await m.reply_text(e)
                      
