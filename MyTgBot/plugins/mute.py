@@ -32,7 +32,7 @@ async def muted(_, m):
                 else:
                      await bot.restrict_chat_member(chat_id, mute_id, ChatPermissions(can_send_messages=False))
                      await m.reply_text(f"The Bitch Muted!\n • {message.from_user.mention}\n\nFollowing Reason:\n`{reason}`")
-                     
+                     return
 
 
 
