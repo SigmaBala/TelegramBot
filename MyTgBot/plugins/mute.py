@@ -15,7 +15,6 @@ async def muted(_, m):
       url = api["results"][0]['url']
       try:
           if admin.privileges.can_restrict_members:
-                   return await message.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
                 if not reply and len(m.command) >2:
                     mute_id = int(m.text.split(" ")[1])
                     reason = m.text.split(None, 2)[2]
@@ -29,7 +28,7 @@ async def muted(_, m):
                      mute_id = reply.from_user.id
                      reason = "No Reason Provide"
                 else:
-                    return await m.reply("I can't find the user.")
+                    return await m.reply("**Your missing the admin rights `can_restrict_members`**")
                 if not bot_stats.privileges:
                       return await m.reply_text("`Make you sure I'm Admin!`")
                 else:
