@@ -51,7 +51,7 @@ async def unmute(_, m):
           if not admin.privileges:
                 return await m.reply_text("Admins Only!")
           else:
-             await bot.restrict_chat_member(chat_id, mute_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
+             await bot.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
              await m.edit_media(media=InputMediaAnimation(url,caption=f"`Fine they can speck now!`\nID: `{mute_id}`"))
       except Exception as e:
             await m.reply_text(e)
