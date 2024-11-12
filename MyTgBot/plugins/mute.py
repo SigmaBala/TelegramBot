@@ -2,11 +2,9 @@ import requests
 import random
 from MyTgBot import bot
 from pyrogram.types import Message, ChatPermissions
-from pyrogram.types.bots_and_keyboards.inline_keyboard_button import InlineKeyboardButton
-from pyrogram.types.bots_and_keyboards.inline_keyboard_markup import InlineKeyboardMarkup
 from pyrogram import filters
 
-@bot.on_message(filters.command("mute"))
+@bot.on_message(filters.command("mute",  ["/", ".", "?", "!"]))
 async def muted(_, m):
       admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
       bot_stats = await bot.get_chat_member(m.chat.id, "self")
@@ -35,26 +33,25 @@ async def muted(_, m):
                       return await m.reply_text("`Make you sure I'm Admin!`")
                 else:
                      await bot.restrict_chat_member(chat_id, mute_id, ChatPermissions(can_send_messages=False))
-                     await m.reply_animation(url,caption=f"The Bitch Muted!\n • `{mute_id}`\n\nFollowing Reason:\n`{reason}`",
-                     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Unmute", callback_data=f"unmute_btn:{mute_id}")]]))
+                     await m.reply_animation(url,caption=f"The Bitch Muted!\n • `{mute_id}`\n\nFollowing Reason:\n`{reason}`")
       except Exception as e:
          await m.reply_text(e)
                      
 
 
-@bot.on_callback_query(filters.regex("unmute_btn"))
-async def unmute_btn(_, query):
-      chat_id = query.message.chat.id
-      user_id = query.from_user.id
+@bot.on_message(filters.command("unmute",  ["/", ".", "?", "!"]))
+async def unmute(_, m):
+      chat_id = m.chat.id
+      user_id = m.from_user.id
       admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
-      mute_id = query.data.split(":")[1]
+      mute_id = m.data.split(":")[1]
       api = requests.get("https://nekos.best/api/v2/smile").json()
       url = api["results"][0]['url']
       try:
           if not admin.privileges:
-                return await query.answer("Admins Only!")
+                return await m.reply_text("Admins Only!")
           else:
              await bot.restrict_chat_member(chat_id, mute_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
-             await query.m.edit_media(media=InputMediaAnimation(url,caption=f"`Fine they can speck now!`\nID: `{mute_id}`"))
+             await m.edit_media(media=InputMediaAnimation(url,caption=f"`Fine they can speck now!`\nID: `{mute_id}`"))
       except Exception as e:
-            await query.m.reply_text(e)
+            await m.reply_text(e)
