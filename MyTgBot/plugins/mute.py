@@ -44,7 +44,6 @@ async def unmute(_, m):
       chat_id = m.chat.id
       user_id = m.from_user.id
       admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
-      mute_id = m.text.split(" ")[1]
       api = requests.get("https://nekos.best/api/v2/smile").json()
       url = api["results"][0]['url']
       try:
@@ -52,6 +51,6 @@ async def unmute(_, m):
                 return await m.reply_text("Admins Only!")
           else:
              await bot.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
-             await m.edit_media(media=InputMediaAnimation(url,caption=f"`Fine they can speck now!`\nID: `{mute_id}`"))
+             await m.edit_media(media=InputMediaAnimation(url,caption=f"`Fine they can speck now!`\nID: ``"))
       except Exception as e:
             await m.reply_text(e)
