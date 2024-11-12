@@ -103,6 +103,7 @@ Usage of Admin commands:
 • /promote - promote a user.
 • /demote - demote a user.
 • /mute - mute a user.
+• /unmute - unmute a user.
 • /kick - kick a user.
 • /ban - ban a user.
 • /unban - unban a user.
