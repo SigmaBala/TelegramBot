@@ -35,7 +35,7 @@ async def userstatus(user_id):
 
 
 
-@bot.on_message(filters.command(["info","userinfo"], ["/", ".", "?", "!"]))
+@bot.on_message(filters.command(["info","userinfo","user","whois"], ["/", ".", "?", "!"]))
 async def userinfo(_, message):
     
      chat_id = message.chat.id
