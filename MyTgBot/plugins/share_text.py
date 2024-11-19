@@ -5,7 +5,7 @@ from urllib.parse import quote
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 @bot.on_message(filters.command(["share_text", "share", "sharetext"], [".", "!", "?", "/"]))
-async def share_text(client, message):
+async def share_text(_, message):
     reply = message.reply_to_message
     reply_id = message.reply_to_message.id if message.reply_to_message else message.id
     input_split = message.text.split(None, 1)
