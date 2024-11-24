@@ -37,7 +37,7 @@ async def ban(_, message):
                                  return await message.reply(
                                  f'Banned {get.mention}!')
                             else:
-                                 await message.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
+                                 await message.reply_text(text = "**You are missing the admin rights `can_restrict_members`**")
                         except Exception as e:
                                return await message.reply(str(e))                    
             else:
@@ -53,7 +53,7 @@ async def ban(_, message):
                      await bot.ban_chat_member(chat_id, user_id)
                      await message.reply_text(text= "**Banned {}!**".format(reply.from_user.mention))
                 else:
-                     await message.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
+                     await message.reply_text(text = "**You are missing the admin rights `can_restrict_members`**")
         except Exception as errors:
            return await message.reply(f"**Error**: {errors}")
 
@@ -75,7 +75,7 @@ async def unban(_, message):
                                  return await message.reply(
                                 'Fine, they can join again.')
                             else:
-                                await message.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
+                                await message.reply_text(text = "**You are missing the admin rights `can_restrict_members`**")
                         except Exception as e:
                                return await message.reply(str(e))                    
             else:
@@ -91,7 +91,7 @@ async def unban(_, message):
                      await bot.unban_chat_member(chat_id, user_id)
                      await message.reply_text(text= "**Fine, they can join again.**")
                 else:
-                     await message.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
+                     await message.reply_text(text = "**You are missing the admin rights `can_restrict_members`**")
         except Exception as errors:
            return await message.reply(f"**Error**: {errors}")
 
@@ -110,7 +110,7 @@ async def kick(_, message):
                          return await message.reply(
                          f'Kicked {get.mention}!')
                     else:
-                         await message.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
+                         await message.reply_text(text = "**You are missing the admin rights `can_restrict_members`**")
                 except Exception as e:
                    return await message.reply(str(e))                    
         else:
@@ -127,7 +127,7 @@ async def kick(_, message):
                 await bot.unban_chat_member(chat_id, user_id)
                 await message.reply_text(text= "**Kicked {}!**".format(reply.from_user.mention))
             else:
-                await message.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
+                await message.reply_text(text = "**You are missing the admin rights `can_restrict_members`**")
 
 
 @bot.on_message(filters.command("demote", ["/", ".", "?", "!"]))
@@ -179,7 +179,7 @@ async def promoting(_, message):
      elif not bot_stats.privileges.can_promote_members:
          return await message.reply("**I'm missing the admin rights `can_promote_members`**")
      elif not user_stats.privileges.can_promote_members:
-         return await message.reply("**Your missing the admin rights `can_promote_members`**")
+         return await message.reply("**You are missing the admin rights `can_promote_members`**")
      elif user_stats.privileges.can_promote_members:
           msg = await message.reply_text("**Promoting Process.**")
           await bot.promote_chat_member(
@@ -240,7 +240,7 @@ async def delete(_, m):
      elif not bot_stats.privileges.can_delete_messages:
               return await m.reply_text("**I'm missing the permission of**:\n`can_delete_messages`")
      elif not user_stats.privileges.can_delete_messages:
-              return await m.reply_text("**your are missing the permission of**:\n`can_delete_messages`")
+              return await m.reply_text("**you are are missing the permission of**:\n`can_delete_messages`")
      elif user_stats.privileges.can_delete_messages:
                await reply.delete()
                await m.delete()
@@ -263,7 +263,7 @@ async def setgrouptitle(_, m):
                await m.reply_text("**I'm missing the permission of**:\n`can_manage_chat`")
                return 
      elif not user_stats.privileges.can_manage_chat:
-               await m.reply_text("**your are missing the permission of**:\n`can_manage_chat`")
+               await m.reply_text("**you are missing the permission of**:\n`can_manage_chat`")
                return 
      elif user_stats.privileges.can_manage_chat:
                await m.chat.set_title(new_title)
@@ -290,7 +290,7 @@ async def setgrouptitle(_, m):
              return await m.reply_text("**I'm missing the permission of**:\n`can_change_info`")
                 
      elif not user_stats.privileges.can_change_info:
-               return await m.reply_text("**your are missing the permission of**:\n`can_change_info`")
+               return await m.reply_text("**you are missing the permission of**:\n`can_change_info`")
                 
      elif user_stats.privileges.can_change_info:
                msg = await m.reply("**New Group Photo Process.**")
