@@ -11,7 +11,7 @@ from MyTgBot.help.readable_time import get_readable_time2
 
 
 # Handle set AFK Command
-@bot.on_message(filters.command(["afk"]))
+@bot.on_message(filters.command("afk", ["/", "!", ".", "?"]))
 async def active_afk(self: Client, ctx: Message):
     if ctx.sender_chat:
         return await ctx.reply_text("You can only use this command in a private chat.", del_in=6)
