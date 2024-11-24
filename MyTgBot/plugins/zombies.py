@@ -11,7 +11,7 @@ async def ban_deleted_accounts(_, m):
     if not get.privileges:
          return await m.reply("**You Needs Admin Rights to Control Me (~_^)!**")
     if not get.privileges.can_restrict_members:
-         return await m.reply_text(text = "**Your missing the admin rights `can_restrict_members`**")
+         return await m.reply_text(text = "**You are missing the admin rights `can_restrict_members`**")
     m = await m.reply("Finding ghosts...")
 
     async for i in bot.get_chat_members(chat_id):
