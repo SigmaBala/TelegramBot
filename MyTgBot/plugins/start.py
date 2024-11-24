@@ -132,6 +132,7 @@ async def userinfohelp(_, query: CallbackQuery):
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
 MISC_TEXT = """
 Extra commands:
+• /afk - for tell someone in online.
 • /tm - reply media to get telegraph link.
 • /txt - reply text with suitable name and get telegraph text link.
 • /voice - reply to a message with the text you want to convert to voice.
