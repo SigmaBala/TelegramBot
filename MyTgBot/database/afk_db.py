@@ -4,7 +4,7 @@ afkdb = mongodb["afk"]
 
 
 async def is_afk(user_id: int) -> bool:
-    user = await afkdb.find_one({"user_id": user_id})
+    user = afkdb.find_one({"user_id": user_id})
     if not user:
         return False, {}
     return True, user["reason"]
@@ -17,9 +17,9 @@ async def add_afk(user_id: int, mode):
 
 
 async def remove_afk(user_id: int):
-    user = await afkdb.find_one({"user_id": user_id})
+    user = afkdb.find_one({"user_id": user_id})
     if user:
-        return await afkdb.delete_one({"user_id": user_id})
+        return afkdb.delete_one({"user_id": user_id})
 
 
 async def get_afk_users() -> list:
