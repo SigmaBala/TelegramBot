@@ -1,55 +1,33 @@
-import requests
-import time
-import os
-from pyrogram import filters
 from MyTgBot import bot
+from pyrogram import filters
+from pyrogram.types import InputMediaPhoto
+import json
+import aiohttp
 
-# Command handler for /generate
-@bot.on_message(filters.command(["generate", "gen"], ["/", "!", ".", "?"]))
-async def generate_image(client, message):
-    # Get the prompt from the command
-    prompt = ' '.join(message.command[1:])
+@bot.on_message(filters.command("image"))
+async def image_search(client, message):
+    try:
+        text = message.text.split(None, 1)[1] 
+    except IndexError:
+        return await message.reply_text(
+            "Provide me a query to search! like /image luffy"
+        )  
+    
+    search_message = await message.reply_text("🔎 Searching for images...")
+    
+    async with aiohttp.ClientSession() as session:
+        async with session.get(f"https://horridapi.onrender.com/image_search?query={text}") as resp:
+            images = json.loads(await resp.text())  # Parse the response JSON into a list of image URLs
 
-    # Send a message to inform the user to wait
-    wait_message = await message.reply_text("Please wait while I generate the image...")
-    StartTime = time.time()
+    media = []
+    count = 0
+    for img in images:
+        if count == 7:
+            break
+       
+        media.append(InputMediaPhoto(media=img))
+        count += 1
 
-
-    # API endpoint URL
-    url = 'https://ai-api.magicstudio.com/api/ai-art-generator'
-
-    # Form data for the request
-    form_data = {
-        'prompt': prompt,
-        'output_format': 'bytes',
-        'request_timestamp': str(int(time.time())),
-        'user_is_subscribed': 'false',
-    }
-
-    # Send a POST request to the API
-    response = requests.post(url, data=form_data)
-
-    if response.status_code == 200:
-        try:
-            if response.content:
-                destination_dir = ''
-                destination_path = os.path.join(destination_dir, 'generated_image.jpg')
-
-                # Save the image to the destination path
-                with open(destination_path, 'wb') as f:
-                    f.write(response.content)
-
-                # Delete the wait message
-                await wait_message.delete()
-
-                # Send the generated image
-                await message.reply_photo(destination_path, caption=f"Here's the generated image!\nTime Taken: {time.time() - StartTime}")
-
-                # Delete the generated image after sending
-                os.remove(destination_path)
-            else:
-                await wait_message.edit_text("Failed to generate the image.")
-        except Exception as e:
-            await wait_message.edit_text("Error: {}".format(e))
-    else:
-        await wait_message.edit_text("Error: {}".format(response.status_code))
+    await search_message.edit_text(f"Found {count} images for your query!")
+    await message.reply_media_group(media=media)    
+    await search_message.delete()
