@@ -254,7 +254,7 @@ async def afk_watcher_func(self: Client, ctx: Message):
             if entity.type == enums.MessageEntityType.MENTION or entity.type == enums.MessageEntityType.TEXT_MENTION:
                 try:
                     user_id_mentioned = ctx.text[entity.offset:entity.offset + entity.length].replace("@", "")
-                    mentioned_user_info = await app.get_users(user_ids=int(user_id_mentioned))
+                    mentioned_user_info = await bot.get_users(user_ids=int(user_id_mentioned))
                     mentioned_user_first_name = mentioned_user_info[0].mention
                     verifier, reasondb = await is_afk(int(user_id_mentioned))
                     if verifier:
