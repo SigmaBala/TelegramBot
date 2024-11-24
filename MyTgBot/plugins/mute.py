@@ -24,7 +24,7 @@ async def muted(_, m):
                      mute_id = reply.from_user.id
                      reason = "No Reason Provide"
                 else:
-                    return await m.reply("**Your missing the admin rights `can_restrict_members`**")
+                    return await m.reply("**You are missing the admin rights `can_restrict_members`**")
                 if not bot_stats.privileges:
                       return await m.reply_text("`Make you sure I'm Admin!`")
                 else:
@@ -41,7 +41,7 @@ async def unmute(_, m):
       admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
       try:
           if not admin.privileges.can_restrict_members:
-                return await m.reply_text("**Your missing the admin rights `can_restrict_members`**")
+                return await m.reply_text("**You are missing the admin rights `can_restrict_members`**")
           else:
              await bot.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
              await m.reply_text(f"`Fine they can speck now!`")
