@@ -1,7 +1,7 @@
 from MyTgBot import mongodb
 
-users = mongodb.users
-groups = mongodb.groups
+users = mongodb["users"]
+groups = mongodb["groups"]
 
 def already_db(user_id):
         user = users.find_one({"user_id" : str(user_id)})
