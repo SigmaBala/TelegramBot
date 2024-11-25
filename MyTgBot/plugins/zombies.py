@@ -1,7 +1,7 @@
 from pyrogram import filters, enums
 from MyTgBot import bot
 
-@bot.on_message(filters.command("zombiesclean"))
+@bot.on_message(filters.command("zombies clean"))
 async def ban_deleted_accounts(_, m):
     get = await bot.get_chat_member(m.chat.id, m.from_user.id)
     reply = m.reply_to_message
