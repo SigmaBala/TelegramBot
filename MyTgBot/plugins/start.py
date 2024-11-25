@@ -234,7 +234,7 @@ async def pastehelp(_, query: CallbackQuery):
 
 ZOMBIES_TEXT = """
 Usage of Zombies commands:
-• /zombiesclean - Remove delete account on you chat.
+• /zombies clean - Remove delete account on you chat.
 """
 
 @bot.on_callback_query(filters.regex("zombies_help"))
