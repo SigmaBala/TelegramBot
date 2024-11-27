@@ -4,12 +4,13 @@ from pyrogram import filters
 
 @bot.on_message(filters.command("mute",  ["/", ".", "?", "!"]))
 async def muted(_, m):
-      if len(message.text.split()) > 1:
+  if len(message.text.split()) > 1:
       admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
       bot_stats = await bot.get_chat_member(m.chat.id, "self")
       user_id = int(m.from_user.id)
       chat_id = int(m.chat.id)
       reply = m.reply_to_message
+  else:
       try:
           if len(message.text.split()) > 1:
           if admin.privileges.can_restrict_members:
