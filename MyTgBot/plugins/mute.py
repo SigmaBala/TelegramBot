@@ -12,7 +12,6 @@ async def muted(_, m):
       reply = m.reply_to_message
    else:
        try:
-          if len(message.text.split()) > 1:
           if admin.privileges.can_restrict_members:
                 if not reply and len(m.command) >2:
                     mute_id = int(m.text.split(" ")[1])
