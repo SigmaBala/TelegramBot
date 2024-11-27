@@ -4,14 +4,12 @@ from pyrogram import filters
 
 @bot.on_message(filters.command("mute",  ["/", ".", "?", "!"]))
 async def muted(_, m):
-   if len(message.text.split()) > 1:
       admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
       bot_stats = await bot.get_chat_member(m.chat.id, "self")
       user_id = int(m.from_user.id)
       chat_id = int(m.chat.id)
       reply = m.reply_to_message
-   else:
-       try:
+      try:
           if admin.privileges.can_restrict_members:
                 if not reply and len(m.command) >2:
                     mute_id = int(m.text.split(" ")[1])
@@ -32,7 +30,7 @@ async def muted(_, m):
                 else:
                      await bot.restrict_chat_member(chat_id, mute_id, ChatPermissions(can_send_messages=False))
                      await m.reply_text(f"The Bitch Muted!\n • {reply.from_user.mention}\n\nFollowing Reason:\n`{reason}`")
-  except Exception as e:
+      except Exception as e:
          await m.reply_text(e)
 
 
