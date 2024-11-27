@@ -10,7 +10,7 @@ async def muted(_, m):
       user_id = int(m.from_user.id)
       chat_id = int(m.chat.id)
       reply = m.reply_to_message
-  else:
+ else:
       try:
           if len(message.text.split()) > 1:
           if admin.privileges.can_restrict_members:
