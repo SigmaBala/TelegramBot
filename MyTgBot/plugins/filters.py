@@ -68,17 +68,16 @@ async def filter(_, message):
 @bot.on_message(filters.command("stop"))
 async def stopper(_, message):
        id = message.from_user.id
-        x = await bot.get_chat_member(message.chat.id, message.from_user.id)
-       if not x.privileges:
+       lol = await bot.get_chat_member(message.chat.id, message.from_user.id)
+       if not lol.privileges:
             return await message.reply("**You don't have right to do this !**")
-        x = x.privileges
-       if not x.can_change_info:
+       if not lol.privileges.can_change_info:
             return await message.reply("**You don't have right to edit filters !**")
        if len(m.command) < 2:
         return await message.reply("**Give filter name to stop !**")
         filname = message.text.split()[1].lower()
-        x = await is_filter(message.chat.id, filname)
-       if not x:
+        lol = await is_filter(message.chat.id, filname)
+       if not lol:
         return await message.reply("**No filter saved with this name !**")
         await del_filter(message.chat.id, filname)
         await message.reply(f"**Filter stopped ~** `{filname}`")
@@ -86,18 +85,17 @@ async def stopper(_, message):
 @bot.on_message(filters.command("filters"))
 async def filter_getter(_, message):
        id = message.from_user.id
-        x = await bot.get_chat_member(message.chat.id, message.from_user.id)
-       if not x.privileges:
+       lol = await bot.get_chat_member(message.chat.id, message.from_user.id)
+       if not lol.privileges:
             return await message.reply("**You don't have right to do this !**")
-        x = x.privileges
-       if not x.can_change_info:
+       if not lol.privileges.can_change_info:
             return await message.reply("**You don't have right to edit filters !**")
-        x = await list_filters(message.chat.id)
-       if not x:
+       lol = await list_filters(message.chat.id)
+       if not lol:
         return await message.reply(f"**No filters saved in {message.chat.title}**")
         txt = f"**Filters in {message.chat.title}**"
         txt += "\n\n"
-        for g in x:
+        for g in lol:
         txt += f"- `{g}`\n"
         await message.reply(txt, reply_markup=markup)
 
@@ -108,10 +106,10 @@ async def cwf(_, message):
             txt = message.text if message.text else message.caption 
             if txt.split()[0].lower() == "/filter":
                 return
-            x = await list_filters(message.chat.id)
+            lol = await list_filters(message.chat.id)
             for h in txt.split():
                 h = h.lower()
-                if h.lower() in x:
+                if h.lower() in lol:
                     j = await get_filter(message.chat.id, h)
                     if not j["file"]:
                         sext = j["text"]
