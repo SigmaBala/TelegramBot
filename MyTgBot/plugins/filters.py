@@ -37,7 +37,6 @@ async def filter(_, message):
             return await message.reply("**/filter trigger text**")
        trigger = message.text.split()[1]
        content = {"file": None, "text": message.text.split(None, 2)[2]}
-       if reply:
        if reply.text:
             if len(message.command) < 2:
                 return await message.reply("**Give a word to filter it !**")
