@@ -14,8 +14,8 @@ markup = IKM(
 
 @bot.on_callback_query(filters.regex("clear_filters"))
 async def cbq(_, q):
-    id = q.from_user.id
-    admin = await bot.get_chat_member(q.message.chat.id, message.from_user.id)
+       id = q.from_user.id
+       admin = await bot.get_chat_member(q.message.chat.id, message.from_user.id)
     if not admin.privileges:
             return await q.answer("Only admin can clear all at once !", show_alert=True)
     await q.answer("clearing...")
@@ -24,8 +24,8 @@ async def cbq(_, q):
 
 @bot.on_message(filters.command("filter"))
 async def filter(_, message):
-     id = message.from_user.id 
-      x = await bot.get_chat_member(message.chat.id, message.from_user.id)
+       id = message.from_user.id 
+        x = await bot.get_chat_member(message.chat.id, message.from_user.id)
     if not x.privileges:
             return await message.reply("**You don't have right to do this !**")
         x = x.privileges
@@ -70,8 +70,8 @@ async def filter(_, message):
 
 @bot.on_message(filters.command("stop"))
 async def stopper(_, message):
-     id = message.from_user.id
-      x = await bot.get_chat_member(message.chat.id, message.from_user.id)
+       id = message.from_user.id
+        x = await bot.get_chat_member(message.chat.id, message.from_user.id)
     if not x.privileges:
             return await message.reply("**You don't have right to do this !**")
         x = x.privileges
@@ -88,8 +88,8 @@ async def stopper(_, message):
 
 @bot.on_message(filters.command("filters"))
 async def filter_getter(_, message):
-     id = message.from_user.id
-      x = await bot.get_chat_member(message.chat.id, message.from_user.id)
+       id = message.from_user.id
+        x = await bot.get_chat_member(message.chat.id, message.from_user.id)
     if not x.privileges:
             return await message.reply("**You don't have right to do this !**")
         x = x.privileges
