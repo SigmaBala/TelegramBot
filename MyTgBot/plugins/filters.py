@@ -42,7 +42,7 @@ async def filter(_, message):
                 return await message.reply("**Give a word to filter it !**")
             trigger = message.text.split()[1]
             content = {"file": None, "text": reply.text}
-       elif reply.media:
+      elif reply.media:
             caption = reply.caption if reply.caption else None
             if len(message.command) < 2:
                 return await message.reply("**Give a word to filter it !**")
