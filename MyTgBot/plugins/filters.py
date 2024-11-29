@@ -62,7 +62,6 @@ async def filter(_, message):
                 content = {"file": ["animation", reply.animation.file_id], "text": caption}
             else:
                 return
-            trigger = message.text.split()[1]
                 await add_filter(message.chat.id, [trigger.lower(), content])
                 await message.reply(f"**Filter saved ~** `{trigger}`")
 
