@@ -18,9 +18,9 @@ async def cbq(_, q):
        admin = await bot.get_chat_member(q.message.chat.id, message.from_user.id)
     if not admin.privileges:
             return await q.answer("Only admin can clear all at once !", show_alert=True)
-    await q.answer("clearing...")
-    await del_all_filters(q.message.chat.id)
-    await q.edit_message_text("All filters cleared !")
+       await q.answer("clearing...")
+       await del_all_filters(q.message.chat.id)
+       await q.edit_message_text("All filters cleared !")
 
 @bot.on_message(filters.command("filter"))
 async def filter(_, message):
@@ -83,8 +83,8 @@ async def stopper(_, message):
     x = await is_filter(message.chat.id, filname)
     if not x:
         return await message.reply("**No filter saved with this name !**")
-    await del_filter(message.chat.id, filname)
-    await message.reply(f"**Filter stopped ~** `{filname}`")
+        await del_filter(message.chat.id, filname)
+        await message.reply(f"**Filter stopped ~** `{filname}`")
 
 @bot.on_message(filters.command("filters"))
 async def filter_getter(_, message):
