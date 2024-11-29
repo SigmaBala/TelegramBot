@@ -1,4 +1,5 @@
 from pyrogram import filters
+from pyrogram.types import *
 from MyTgBot import bot
 from MyTgBot.database.filters_db import *
 from pyrogram.types import InlineKeyboardButton as IKB, InlineKeyboardMarkup as IKM
@@ -23,8 +24,8 @@ async def cbq(_, q):
 
 @bot.on_message(filters.command("filter"))
 async def filter(_, message):
-    id = message.from_user.id 
-     x = await bot.get_chat_member(message.chat.id, message.from_user.id)
+     id = message.from_user.id 
+      x = await bot.get_chat_member(message.chat.id, message.from_user.id)
     if not x.privileges:
             return await message.reply("**You don't have right to do this !**")
         x = x.privileges
@@ -69,8 +70,8 @@ async def filter(_, message):
 
 @bot.on_message(filters.command("stop"))
 async def stopper(_, message):
-    id = message.from_user.id
-     x = await bot.get_chat_member(message.chat.id, message.from_user.id)
+     id = message.from_user.id
+      x = await bot.get_chat_member(message.chat.id, message.from_user.id)
     if not x.privileges:
             return await message.reply("**You don't have right to do this !**")
         x = x.privileges
@@ -87,8 +88,8 @@ async def stopper(_, message):
 
 @bot.on_message(filters.command("filters"))
 async def filter_getter(_, message):
-    id = message.from_user.id
-     x = await bot.get_chat_member(message.chat.id, message.from_user.id)
+     id = message.from_user.id
+      x = await bot.get_chat_member(message.chat.id, message.from_user.id)
     if not x.privileges:
             return await message.reply("**You don't have right to do this !**")
         x = x.privileges
