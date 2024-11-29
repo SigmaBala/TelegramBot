@@ -33,9 +33,7 @@ async def filter(_, message):
             return await message.reply("**You don't have right to edit filters !**")
       if not reply:
           return await message.reply("**/filter trigger text**")
-      trigger = message.text.split()[1]
-      content = {"file": None, "text": message.text.split(None, 2)[2]}
-      if reply.text:
+      if reply:
             if len(message.command) < 2:
                 return await message.reply("**Give a word to filter it !**")
             trigger = message.text.split()[1]
