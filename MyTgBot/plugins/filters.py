@@ -28,8 +28,7 @@ async def filter(_, message):
        lol = await bot.get_chat_member(message.chat.id, message.from_user.id)
        if not lol.privileges:
             return await message.reply("**You don't have right to do this !**")
-        lol = lol.privileges
-        if not lol.can_change_info:
+       if not lol.can_change_info:
             return await message.reply("**You don't have right to edit filters !**")
     reply = message.reply_to_message
     if not reply:
