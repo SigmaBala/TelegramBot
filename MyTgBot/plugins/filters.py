@@ -42,7 +42,7 @@ async def filter(_, message):
                 return await message.reply("**Give a word to filter it !**")
             trigger = message.text.split()[1]
             content = {"file": None, "text": reply.text}
-        elif reply.media:
+       elif reply.media:
             caption = reply.caption if reply.caption else None
             if len(message.command) < 2:
                 return await message.reply("**Give a word to filter it !**")
@@ -96,11 +96,11 @@ async def filter_getter(_, message):
         x = await list_filters(message.chat.id)
        if not x:
         return await message.reply(f"**No filters saved in {message.chat.title}**")
-    txt = f"**Filters in {message.chat.title}**"
-    txt += "\n\n"
-    for g in x:
+        txt = f"**Filters in {message.chat.title}**"
+        txt += "\n\n"
+        for g in x:
         txt += f"- `{g}`\n"
-    await message.reply(txt, reply_markup=markup)
+        await message.reply(txt, reply_markup=markup)
 
 @bot.on_message(filters.group, group=11)
 async def cwf(_, message):
