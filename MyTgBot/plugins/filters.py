@@ -26,7 +26,7 @@ async def cbq(_, q):
 async def filter(_, message):
        id = message.from_user.id 
         x = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if not x.privileges:
+       if not x.privileges:
             return await message.reply("**You don't have right to do this !**")
         x = x.privileges
         if not x.can_change_info:
@@ -72,7 +72,7 @@ async def filter(_, message):
 async def stopper(_, message):
        id = message.from_user.id
         x = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if not x.privileges:
+       if not x.privileges:
             return await message.reply("**You don't have right to do this !**")
         x = x.privileges
         if not x.can_change_info:
@@ -90,7 +90,7 @@ async def stopper(_, message):
 async def filter_getter(_, message):
        id = message.from_user.id
         x = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if not x.privileges:
+       if not x.privileges:
             return await message.reply("**You don't have right to do this !**")
         x = x.privileges
         if not x.can_change_info:
