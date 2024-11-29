@@ -63,8 +63,8 @@ async def filter(_, message):
             else:
                 return
             trigger = message.text.split()[1]
-    await add_filter(message.chat.id, [trigger.lower(), content])
-    await message.reply(f"**Filter saved ~** `{trigger}`")
+      await add_filter(message.chat.id, [trigger.lower(), content])
+      await message.reply(f"**Filter saved ~** `{trigger}`")
 
 @bot.on_message(filters.command("stop"))
 async def stopper(_, message):
