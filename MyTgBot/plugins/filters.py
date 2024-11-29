@@ -25,11 +25,11 @@ async def cbq(_, q):
 @bot.on_message(filters.command("filter"))
 async def filter(_, message):
        id = message.from_user.id 
-        x = await bot.get_chat_member(message.chat.id, message.from_user.id)
-       if not x.privileges:
+       lol = await bot.get_chat_member(message.chat.id, message.from_user.id)
+       if not lol.privileges:
             return await message.reply("**You don't have right to do this !**")
-        x = x.privileges
-        if not x.can_change_info:
+        lol = lol.privileges
+        if not lol.can_change_info:
             return await message.reply("**You don't have right to edit filters !**")
     reply = message.reply_to_message
     if not reply:
