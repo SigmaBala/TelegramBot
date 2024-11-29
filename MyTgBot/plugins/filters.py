@@ -24,20 +24,20 @@ async def cbq(_, q):
 
 @bot.on_message(filters.command("filter"))
 async def filter(_, message):
-       id = message.from_user.id 
-       lol = await bot.get_chat_member(message.chat.id, message.from_user.id)
-       reply = message.reply_to_message
-       if not lol.privileges:
+      id = message.from_user.id 
+      lol = await bot.get_chat_member(message.chat.id, message.from_user.id)
+      reply = message.reply_to_message
+      if not lol.privileges:
             return await message.reply("**You don't have right to do this !**")
-       if not lol.privileges.can_change_info:
+      if not lol.privileges.can_change_info:
             return await message.reply("**You don't have right to edit filters !**")
-       if not reply:
+      if not reply:
         txt = message.text.split()
-       if len(txt) < 3:
+      if len(txt) < 3:
             return await message.reply("**/filter trigger text**")
        trigger = message.text.split()[1]
        content = {"file": None, "text": message.text.split(None, 2)[2]}
-       if reply.text:
+      if reply.text:
             if len(message.command) < 2:
                 return await message.reply("**Give a word to filter it !**")
             trigger = message.text.split()[1]
