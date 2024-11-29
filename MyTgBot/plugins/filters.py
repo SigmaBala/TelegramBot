@@ -95,7 +95,7 @@ async def filter_getter(_, message):
         return await message.reply(f"**No filters saved in {message.chat.title}**")
         txt = f"**Filters in {message.chat.title}**"
         txt += "\n\n"
-        for g in lol:
+       for g in lol:
         txt += "- `{g}`\n"
         await message.reply(txt, reply_markup=markup)
 
