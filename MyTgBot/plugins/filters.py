@@ -26,11 +26,11 @@ async def cbq(_, q):
 async def filter(_, message):
        id = message.from_user.id 
        lol = await bot.get_chat_member(message.chat.id, message.from_user.id)
+       reply = message.reply_to_message
        if not lol.privileges:
             return await message.reply("**You don't have right to do this !**")
        if not lol.privileges.can_change_info:
             return await message.reply("**You don't have right to edit filters !**")
-         reply = message.reply_to_message
     if not reply:
         txt = message.text.split()
         if len(txt) < 3:
