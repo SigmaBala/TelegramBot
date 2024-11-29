@@ -32,7 +32,7 @@ async def filter(_, message):
       if not lol.privileges.can_change_info:
             return await message.reply("**You don't have right to edit filters !**")
       if not reply:
-        txt = message.text.split()
+        txt = message.text.split()[0]
       if len(txt) < 3:
           return await message.reply("**/filter trigger text**")
       trigger = message.text.split()[1]
