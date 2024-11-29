@@ -16,7 +16,7 @@ markup = IKM(
 async def cbq(_, q):
        id = q.from_user.id
        admin = await bot.get_chat_member(q.message.chat.id, message.from_user.id)
-    if not admin.privileges:
+       if not admin.privileges:
             return await q.answer("Only admin can clear all at once !", show_alert=True)
        await q.answer("clearing...")
        await del_all_filters(q.message.chat.id)
