@@ -31,14 +31,14 @@ async def filter(_, message):
             return await message.reply("**You don't have right to do this !**")
        if not lol.privileges.can_change_info:
             return await message.reply("**You don't have right to edit filters !**")
-    if not reply:
+       if not reply:
         txt = message.text.split()
-        if len(txt) < 3:
+       if len(txt) < 3:
             return await message.reply("**/filter trigger text**")
         trigger = message.text.split()[1]
         content = {"file": None, "text": message.text.split(None, 2)[2]}
-    if reply:
-        if reply.text:
+       if reply:
+       if reply.text:
             if len(message.command) < 2:
                 return await message.reply("**Give a word to filter it !**")
             trigger = message.text.split()[1]
@@ -76,11 +76,11 @@ async def stopper(_, message):
         x = x.privileges
         if not x.can_change_info:
             return await message.reply("**You don't have right to edit filters !**")
-    if len(m.command) < 2:
+        if len(m.command) < 2:
         return await message.reply("**Give filter name to stop !**")
     filname = message.text.split()[1].lower()
     x = await is_filter(message.chat.id, filname)
-    if not x:
+       if not x:
         return await message.reply("**No filter saved with this name !**")
         await del_filter(message.chat.id, filname)
         await message.reply(f"**Filter stopped ~** `{filname}`")
