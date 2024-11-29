@@ -5,7 +5,7 @@ from pyrogram.types.bots_and_keyboards.inline_keyboard_button import InlineKeybo
 from pyrogram.types.bots_and_keyboards.inline_keyboard_markup import InlineKeyboardMarkup
 from pyrogram.types import CallbackQuery
 from MyTgBot import bot
-from MyTgBot.database.db import add_user, add_group
+from MyTgBot.database.user_db import add_user, add_group
 
 START_TEXT = """
 Hello there i am Serena ✘
