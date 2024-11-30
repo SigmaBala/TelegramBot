@@ -11,7 +11,7 @@ from pyrogram.types import (
 )
 
 from MyTgBot import bot, mongodb
-from MyTgBot.database import flood_off, flood_on, is_flood_on
+from MyTgBot.database.flood_db import flood_off, flood_on, is_flood_on
 
 
 DB = mongodb["flood"]  # TODO Use mongodb instead of a fucking dict.
