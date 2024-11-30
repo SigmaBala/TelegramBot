@@ -1,4 +1,4 @@
-from MyTgBot import Mongodb
+from MyTgBot import mongodb
 
 db = mongodb["flood"]
 
