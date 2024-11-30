@@ -103,7 +103,6 @@ async def flood_callback_func(_, cq: CallbackQuery):
 
 
 @bot.on_message(filters.command("flood"))
-@can_change_info
 async def flood_toggle(_, message: Message):
     if len(message.command) != 2:
         return await message.reply_text("Usage: /flood [ENABLE|DISABLE]")
