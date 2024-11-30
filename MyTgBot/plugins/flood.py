@@ -11,6 +11,7 @@ from pyrogram.types import (
 )
 
 from MyTgBot import bot, mongodb
+from MyTgBot.help.admin_misc import can_change_info
 from MyTgBot.database.flood_db import flood_off, flood_on, is_flood_on
 
 
@@ -102,15 +103,13 @@ async def flood_callback_func(_, cq: CallbackQuery):
 
 
 @bot.on_message(filters.command("flood"))
+@can_change_info
 async def flood_toggle(_, message: Message):
     if len(message.command) != 2:
         return await message.reply_text("Usage: /flood [ENABLE|DISABLE]")
     status = message.text.split(None, 1)[1].strip()
     status = status.lower()
     chat_id = message.chat.id
-    admin = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if admin.privileges.can_change_info:
-       return False
     if status == "enable":
         await flood_on(chat_id)
         await message.reply_text("Enabled Flood Checker.")
