@@ -110,10 +110,10 @@ async def flood_toggle(_, message: Message):
     status = status.lower()
     chat_id = message.chat.id
     if status == "enable":
-        await flood_on(chat_id)
+        flood_on(chat_id)
         await message.reply_text("Enabled Flood Checker.")
     elif status == "disable":
-        await flood_off(chat_id)
+        flood_off(chat_id)
         await message.reply_text("Disabled Flood Checker.")
     else:
         await message.reply_text("Unknown Suffix, Use /flood [ENABLE|DISABLE]")
