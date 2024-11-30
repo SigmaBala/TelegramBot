@@ -110,7 +110,7 @@ async def flood_toggle(_, message: Message):
     chat_id = message.chat.id
     admin = await bot.get_chat_member(message.chat.id, message.from_user.id)
     if admin.privileges.can_change_info:
-       return await message.reply_text("You don't have enough permissions to perform this action.")
+       return
     if status == "enable":
         await flood_on(chat_id)
         await message.reply_text("Enabled Flood Checker.")
