@@ -1,4 +1,4 @@
-from asyncio import get_running_loop, sleep
+from asyncio import sleep
 from datetime import datetime, timedelta
 
 from pyrogram import filters
@@ -80,8 +80,6 @@ async def flood_control_func(_, message: Message):
             except Exception:
                 pass
 
-        loop = get_running_loop()
-        return loop.create_task(delete())
     DB[chat_id][user_id] += 1
 
 
