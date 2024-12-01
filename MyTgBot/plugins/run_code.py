@@ -35,8 +35,8 @@ async def speedtest_func(client, message):
 
     result = speed.results.dict()
     msg = f"""
-    **Download**: {(result['download'])}Mb/s
-    **Upload**: {(result['upload'])}Mb/s
+    **Download**: {result['download']}Mb/s
+    **Upload**: {result['upload']}Mb/s
     **Ping**: {result['ping']}
     """
     await message.reply_photo(speedtest_image, caption=msg)
