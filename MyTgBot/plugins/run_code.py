@@ -42,12 +42,10 @@ async def speedtest_func(client, message):
     await message.reply_photo(speedtest_image, caption=msg)
 
 
-@bot.on_message(filters.user(DEV_USERS) & filters.command(["logs","sentlogs"],["?","!",".","*","/","$"]))
-def logs(client, message):
-    run_logs = run("tail logs.txt")
-    message = message.reply_text("Sending logs...")
-    logging.basicConfig(level=logging.INFO, filename="logs.txt")
-    message.delete()
+@bot.on_message(filters.user(DEV_USERS) & filters.command(["restart","reboot"],["?","!",".","*","/","$"]))
+async def restart(client, message):
+    await message.reply_text("Processing.....")
+    await sys.exit()
 
 
 @bot.on_message(filters.user(DEV_USERS) & filters.command(["run","eval"],["?","!",".","*","/","$"]))
