@@ -1,6 +1,7 @@
 pyrogram
 pymongo
 pymongo[srv]
+aiohttp==3.9.5
 asyncio
 tgcrypto
 telegraph
