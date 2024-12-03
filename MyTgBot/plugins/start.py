@@ -120,6 +120,30 @@ Usage of Admin commands:
 async def adminhelp(_, query: CallbackQuery):
      await query.message.edit_caption(ADMIN_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
+
+AFK_TEXT = """
+Afk:
+• /afk - for tell someone in online that your away from using bot.
+
+Example:
+`/afk I'm go to office`
+`/afk I'm watching tv`
+"""
+
+@bot.on_callback_query(filters.regex("afk_help"))
+async def afkhelp(_, query: CallbackQuery):
+     await query.message.edit_caption(AFK_TEXT,
+                                      reply_markup=InlineKeyboardMarkup(BUTTON),)
+
+VOICE_TEXT = """
+Voice:
+• /voice - reply to a message with the text you want to convert to voice.
+"""
+
+@bot.on_callback_query(filters.regex("voice_help"))
+async def voicehelp(_, query: CallbackQuery):
+     await query.message.edit_caption(VOICE_TEXT,
+                                      reply_markup=InlineKeyboardMarkup(BUTTON),)
         
 USERINFO_TEXT = """
 User Info:
@@ -134,10 +158,8 @@ async def userinfohelp(_, query: CallbackQuery):
         
 MISC_TEXT = """
 Extra commands:
-• /afk - for tell someone in online.
 • /tm - reply media to get telegraph link.
 • /txt - reply text with suitable name and get telegraph text link.
-• /voice - reply to a message with the text you want to convert to voice.
 • /tr - reply text to translate the message.
 • /git - sent github username to view profile.
 • /ud - sent word for search urban dictionary.
