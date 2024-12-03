@@ -62,18 +62,19 @@ Click the button below to know my commands!
 """
 
 HELP_BUTTON = [[
+        InlineKeyboardButton('💤 Afk', callback_data='afk_help'),
         InlineKeyboardButton('👮 Admin', callback_data='admin_help'),
         InlineKeyboardButton('👥 UserInfo', callback_data='userinfo_help'),
         ],[
         InlineKeyboardButton('🤗 Fun', callback_data='fun_help'),
         InlineKeyboardButton('👻 Misc', callback_data='misc_help'),
-        ],[
         InlineKeyboardButton('🔍 Tagging', callback_data='tagging_help'),
-        InlineKeyboardButton('✍ Notes', callback_data='notes_help'),
         ],[
+        InlineKeyboardButton('✍ Notes', callback_data='notes_help'),
         InlineKeyboardButton('🧚 Nekos', callback_data='nekos_help'),
         InlineKeyboardButton('❌ Ban-All', callback_data='banall_help'),
         ],[
+        InlineKeyboardButton('🎤 Voice', callback_data='voice_help'),
         InlineKeyboardButton('☠ Zombies', callback_data='zombies_help'),
         InlineKeyboardButton('✏ Rename', callback_data='rename_help'),
         ],[
@@ -119,7 +120,7 @@ Usage of Admin commands:
 async def adminhelp(_, query: CallbackQuery):
      await query.message.edit_caption(ADMIN_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
-
+        
 USERINFO_TEXT = """
 User Info:
 • /id - userid & chatid.
@@ -130,6 +131,7 @@ User Info:
 async def userinfohelp(_, query: CallbackQuery):
      await query.message.edit_caption(USERINFO_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
+        
 MISC_TEXT = """
 Extra commands:
 • /afk - for tell someone in online.
@@ -148,6 +150,7 @@ Extra commands:
 async def micshelp(_, query: CallbackQuery):
      await query.message.edit_caption(MISC_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
+        
 TAGGING_TEXT = """
 Tagging a group members:
 • /tagall - tag a group members.
@@ -158,6 +161,7 @@ Tagging a group members:
 async def tagginghelp(_, query: CallbackQuery):
      await query.message.edit_caption(TAGGING_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
+        
 FUN_TEXT = """
 Usage of Fun commands:
 • /react - react a message.
@@ -216,7 +220,6 @@ async def noteshelp(_, query: CallbackQuery):
      await query.message.edit_caption(NOTES_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
 
-
 RENAME_TEXT = """
 Usage of Rename commands:
 • /rename - reply file to rename.
@@ -225,11 +228,6 @@ Usage of Rename commands:
 @bot.on_callback_query(filters.regex("rename_help"))
 async def renamehelp(_, query: CallbackQuery):
      await query.message.edit_caption(RENAME_TEXT,
-                                      reply_markup=InlineKeyboardMarkup(BUTTON),)
-
-@bot.on_callback_query(filters.regex("paste_help"))
-async def pastehelp(_, query: CallbackQuery):
-     await query.message.edit_caption(PASTE_TEXT,
                                       reply_markup=InlineKeyboardMarkup(BUTTON),)
 
 ZOMBIES_TEXT = """
