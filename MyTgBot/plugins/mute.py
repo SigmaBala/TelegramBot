@@ -47,5 +47,5 @@ async def unmute(_, m):
           else:
              await bot.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
              await m.reply_text(f"`Fine they can speck now!`")
-    except Exception as e:
+      except Exception as e:
             await m.reply_text(e)
