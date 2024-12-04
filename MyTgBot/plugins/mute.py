@@ -4,6 +4,7 @@ from pyrogram import filters
 
 @bot.on_message(filters.command("mute",  ["/", ".", "?", "!"]))
 async def muted(_, m):
+    if len(message.text.split()) > 1:
       admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
       bot_stats = await bot.get_chat_member(m.chat.id, "self")
       user_id = int(m.from_user.id)
@@ -30,12 +31,13 @@ async def muted(_, m):
                 else:
                      await bot.restrict_chat_member(chat_id, mute_id, ChatPermissions(can_send_messages=False))
                      await m.reply_text(f"The Bitch Muted!\n • {reply.from_user.mention}\n\nFollowing Reason:\n`{reason}`")
-      except Exception as e:
-         await m.reply_text(e)
+          except Exception as e:
+          await m.reply_text(e)
 
 
 @bot.on_message(filters.command("unmute",  ["/", ".", "?", "!"]))
 async def unmute(_, m):
+    if len(message.text.split()) > 1:
       chat_id = m.chat.id
       user_id = m.from_user.id
       admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
@@ -45,5 +47,5 @@ async def unmute(_, m):
           else:
              await bot.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True))
              await m.reply_text(f"`Fine they can speck now!`")
-      except Exception as e:
+    except Exception as e:
             await m.reply_text(e)
