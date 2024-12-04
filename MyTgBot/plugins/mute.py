@@ -7,8 +7,8 @@ async def muted(_, m):
     if len(m.text.split()) > 1:
       admin = await bot.get_chat_member(m.chat.id, m.from_user.id)
       bot_stats = await bot.get_chat_member(m.chat.id, "self")
-      user_id = int(m.from_user.id)
-      chat_id = int(m.chat.id)
+      user_id = m.from_user.id
+      chat_id = m.chat.id
       reply = m.reply_to_message
       try:
           if admin.privileges.can_restrict_members:
