@@ -6,7 +6,7 @@ from pyrogram import enums
 from datetime import datetime
 
 from MyTgBot import bot
-from MyTgBot.database.couplesdb import *
+from MyTgBot.database.couples_db import *
 
 
 def date():
