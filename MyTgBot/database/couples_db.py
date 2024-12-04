@@ -16,7 +16,7 @@ async def get_couple(chat_id: int):
          men = (await bot.get_users(couples["men"])).mention
          women = (await bot.get_users(couples["women"])).mention
          text = f"""
-** ♥️ Couples of this Day ❤️**
+**❤️ Couples of this Day ❤️**
 
 **Man**: {men}
 **Woman**: {women}
