@@ -186,6 +186,7 @@ async def tagginghelp(_, query: CallbackQuery):
         
 FUN_TEXT = """
 Usage of Fun commands:
+• /couples - choose 2 users and send their name as couples in your chat.
 • /react - react a message.
 • /aq - random sent animequotes.
 • /dice - sent a dice.
