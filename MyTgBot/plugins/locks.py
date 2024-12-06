@@ -1,4 +1,5 @@
 from MyTgBot import bot
+from MyTgBot.help.help_func import get_urls_from_text
 from pyrogram import filters
 from pyrogram.errors.exceptions.bad_request_400 import ChatNotModified
 from pyrogram.types import ChatPermissions
