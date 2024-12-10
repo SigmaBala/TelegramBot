@@ -129,25 +129,3 @@ async def locktypes(_, message):
         perms += f"__**{i}**__\n"
 
     await message.reply_text(perms)
-
-
-@bot.on_message(filters.text & ~filters.private, group=69)
-async def url_detector(_, message):
-    user = message.from_user
-    chat_id = message.chat.id
-    text = message.text.lower().strip()
-
-    if not text or not user:
-        return
-
-    check = get_urls_from_text(text)
-    if check:
-        permissions = await current_chat_permissions(chat_id)
-        if "can_add_web_page_previews" not in permissions:
-            try:
-                await message.delete()
-            except Exception:
-                await message.reply_text(
-                    "This message contains a URL, "
-                    + "but i don't have enough permissions to delete it"
-            )
