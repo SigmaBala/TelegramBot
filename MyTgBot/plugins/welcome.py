@@ -1,4 +1,5 @@
-from pyrogram import filters
+from pyrogram import filters, enums
+from pyrogram.types import *
 from MyTgBot import bot
 
 @bot.on_message(filters.new_chat_members)
