@@ -13,10 +13,10 @@ async def muted(_, m):
       try:
           if admin.privileges.can_restrict_members:
                 if not reply and len(m.command) >2:
-                    mute_id = int(m.text.split(" ")[1])
+                    mute_id = int(m.text.split()[1])
                     reason = m.text.split(None, 2)[2]
                 elif not reply and len(m.command) == 2:
-                    mute_id = int(m.text.split(" ")[1])
+                    mute_id = int(m.text.split()[1])
                     reason = "No Reason Provide"
                 elif reply and len(m.command) >1:
                     mute_id = reply.from_user.id
