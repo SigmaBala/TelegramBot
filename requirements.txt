@@ -1,9 +1,9 @@
-pyrogram
+https://github.com/KurimuzonAkuma/pyrogram/archive/dev.zip
 pymongo
 pymongo[srv]
 aiohttp==3.9.5
 asyncio
-tgcrypto
+tgcrypto==1.2.5
 telegraph
 gpytranslate
 requests
