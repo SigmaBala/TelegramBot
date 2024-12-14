@@ -19,7 +19,7 @@ async def filters(_, message):
      filters += "\nYou can retrieve these filters by using filter name"
      return await message.reply_text(filters)
 
-@bot.on_message(filters.command("stop", ["/", ".", "?", "!"]))
+@bot.on_message(filters.command("stoop", ["/", ".", "?", "!"]))
 async def stop(_, message):
       chat_id = message.chat.id
       get = await bot.get_chat_member(message.chat.id, message.from_user.id)
