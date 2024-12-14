@@ -25,7 +25,7 @@ async def stop(_, message):
       get = await bot.get_chat_member(message.chat.id, message.from_user.id)
       if not get.privileges: return await message.reply_text("Admins Only Can Stop Filters!")
       try: filter_name = message.text.split(None,1)[1]
-      except: return await message.reply_text("what I want do stop? tell me filter name!")
+      except: return await message.reply_text("What I want do stop? tell me filter name!")
       x = db.find_one({"chat_id": chat_id, "filter_name": filter_name})
       if bool(x):
           db.delete_one(x)
@@ -39,7 +39,7 @@ async def save(_, message):
      chat_id = message.chat.id
      user_id = message.from_user.id
      if message.chat.type == enums.ChatType.PRIVATE: return await message.reply_text("Commands Work Only On Groups!")
-     elif not get.privileges: return await message.reply_text("Admins Only Can Save Notes!")
+     elif not get.privileges: return await message.reply_text("Admins Only Can Save Filters!")
      try: filter_name = message.text.split(None,1)[1].lower()
      except: return await message.reply_text("Give Filter Name To Save!")
      if reply and reply.text:
@@ -107,5 +107,5 @@ async def get_filters(_, message):
           elif "sticker" == x["type"]:
                 sticker = x["sticker"]
                 return await message.reply_sticker(sticker=sticker)
-          else: return await message.reply_text("can't send this Filter >`{}`<".format(filter_name))
+          else: return await message.reply_text("Can't send this Filter >`{}`<".format(filter_name))
      else: return
