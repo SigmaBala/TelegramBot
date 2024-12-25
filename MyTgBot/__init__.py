@@ -1,13 +1,22 @@
 from pyrogram import Client
 from pymongo import MongoClient
 import os
-import time
+import time, logging
 
 start = time.time()
 
 api_id = os.getenv("API_ID")
 api_hash = os.getenv("API_HASH")
 bot_token = os.getenv("TOKEN")
+
+log = logging.getLogger(__name__)
+
+
+# enable logging
+FORMAT = "[Telegram-Bot] %(message)s"
+logging.basicConfig(
+    level=logging.INFO, format=FORMAT
+)
 
 
 MONGO = "mongodb+srv://kora3244:jNtUZleBWM71f1pC@haremdb.qxtdvdh.mongodb.net/?retryWrites=true&w=majority"
