@@ -1,1 +1,1 @@
-worker: python3 -m MyTgBot
+web: python3 -m MyTgBot
