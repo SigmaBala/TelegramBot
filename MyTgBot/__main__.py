@@ -6,7 +6,6 @@ import asyncio, aiohttp, logging, traceback
 WEB_URL = "https://barath-n3qo.onrender.com"
 WEB_SLLEP = 3*60
 
-
 routes = web.RouteTableDef()
 
 @routes.get('/', allow_head=True)
