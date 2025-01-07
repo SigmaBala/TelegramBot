@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 
 # enable logging
-FORMAT = "[Telegram-Bot] %(message)s"
+FORMAT = "[Telegram-bot] %(message)s"
 logging.basicConfig(
     level=logging.INFO, format=FORMAT
 )
