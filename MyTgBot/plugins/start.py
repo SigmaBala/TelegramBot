@@ -110,6 +110,8 @@ Usage of Admin commands:
 • /unban - unban a user.
 • /pin - pin a message.
 • /unpin - unpin a message.
+• /lock - lock a message or anything.
+• /unlock - unlock a message or anything.
 • /del - delete a message.
 • /setgpic - set group pic.
 • /setgtitle - set group title.
