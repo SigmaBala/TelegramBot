@@ -1,5 +1,6 @@
 https://github.com/KurimuzonAkuma/pyrogram/archive/dev.zip
 pymongo
+pyromod
 pymongo[srv]
 aiohttp==3.9.5
 asyncio
